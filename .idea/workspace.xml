@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="563b48ed-940e-49a2-bb5e-59726543749e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/db.sqlite3" afterPath="$PROJECT_DIR$/Pekka 2.0/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/PU-Gruppe-25.iml" afterPath="$PROJECT_DIR$/.idea/PU-Gruppe-25.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/music/templates/music/base.html" afterPath="$PROJECT_DIR$/Pekka 2.0/music/templates/music/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/music/templates/music/create_album.html" afterPath="$PROJECT_DIR$/Pekka 2.0/music/templates/music/create_album.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,11 +38,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create_album.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="create_album.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pekka 2.0/music/templates/music/create_album.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="51" column="25" lean-forward="true" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
+            <state relative-caret-position="170">
+              <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Pekka 2.0/music/templates/music/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="44" column="58" lean-forward="false" selection-start-line="44" selection-start-column="58" selection-end-line="44" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -73,16 +80,6 @@
       </file>
       <file leaf-file-name="TDT4145_a.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pekka 2.0/music/templates/Fagsider/TDT4145_a.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TTM4100_q.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pekka 2.0/music/templates/Fagsider/TTM4100_q.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -135,7 +132,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>add</find>
       <find>vi</find>
       <find>meta</find>
       <find>fagsider</find>
@@ -143,6 +139,7 @@
       <find>favor</find>
       <find>favorites</find>
       <find>favorite</find>
+      <find>add</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -168,6 +165,7 @@
         <option value="$PROJECT_DIR$/Pekka 2.0/music/templates/music/songs.html" />
         <option value="$PROJECT_DIR$/Pekka 2.0/music/templates/music/login.html" />
         <option value="$PROJECT_DIR$/Pekka 2.0/music/templates/music/create_album.html" />
+        <option value="$PROJECT_DIR$/Pekka 2.0/music/templates/music/base.html" />
       </list>
     </option>
   </component>
@@ -780,14 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pekka 2.0/music/templates/music/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="29" lean-forward="true" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pekka 2.0/music/templates/Fagsider/TDT4110_a.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -896,8 +886,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Pekka 2.0/music/templates/music/create_album.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="51" column="25" lean-forward="true" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
+        <state relative-caret-position="170">
+          <caret line="10" column="38" lean-forward="false" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pekka 2.0/music/templates/music/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="44" column="58" lean-forward="false" selection-start-line="44" selection-start-column="58" selection-end-line="44" selection-end-column="58" />
           <folding />
         </state>
       </provider>
