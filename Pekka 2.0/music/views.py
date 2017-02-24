@@ -10,6 +10,38 @@ AUDIO_FILE_TYPES = ['wav', 'mp3', 'ogg']
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
 
 
+def TDT4140_a(request):
+    return render(request, 'Fagsider/TDT4140_a.html')
+
+def TDT4110_a(request):
+    return render(request, 'Fagsider/TDT4110_a.html')
+
+def TDT4145_a(request):
+    return render(request, 'Fagsider/TDT4145_a.html')
+
+def TDT4180_a(request):
+    return render(request, 'Fagsider/TDT4180_a.html')
+
+def TTM4100_a(request):
+    return render(request, 'Fagsider/TTM4100_a.html')
+
+
+def TDT4140_q(request):
+    return render(request, 'Fagsider/TDT4140_q.html')
+
+def TDT4110_q(request):
+    return render(request, 'Fagsider/TDT4110_q.html')
+
+def TDT4145_q(request):
+    return render(request, 'Fagsider/TDT4145_q.html')
+
+def TDT4180_q(request):
+    return render(request, 'Fagsider/TDT4180_q.html')
+
+def TTM4100_q(request):
+    return render(request, 'Fagsider/TTM4100_q.html')
+
+
 def create_album(request):
     if not request.user.is_authenticated():
         return render(request, 'music/login.html')

@@ -16,4 +16,16 @@ urlpatterns = [
     url(r'^(?P<album_id>[0-9]+)/delete_song/(?P<song_id>[0-9]+)/$', views.delete_song, name='delete_song'),
     url(r'^(?P<album_id>[0-9]+)/favorite_album/$', views.favorite_album, name='favorite_album'),
     url(r'^(?P<album_id>[0-9]+)/delete_album/$', views.delete_album, name='delete_album'),
+    url(r'^TDT4140_a/$', views.TDT4140_a),
+    url(r'^TDT4110_a/$', views.TDT4110_a),
+    url(r'^TDT4145_a/$', views.TDT4145_a),
+    url(r'^TDT4180_a/$', views.TDT4180_a),
+    url(r'^TTM4100_a/$', views.TTM4100_a),
+
+    url(r'^TDT4140_q/$', views.TDT4140_q),
+    url(r'^TDT4110_q/$', views.TDT4110_q),
+    url(r'^TDT4145_q/$', views.TDT4145_q),
+    url(r'^TDT4180_q/$', views.TDT4180_q),
+    url(r'^TTM4100_q/$', views.TTM4100_q),
+
 ]
