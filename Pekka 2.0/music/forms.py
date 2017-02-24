@@ -3,6 +3,17 @@ from django.contrib.auth.models import User
 
 from .models import Album, Song
 
+class QuestionForm(forms.Form):
+    question_title = forms.CharField(required = True)
+
+    content = forms.CharField(
+        required=True,
+        widget=forms.Textarea
+    )
+
+
+
+
 
 class AlbumForm(forms.ModelForm):
 

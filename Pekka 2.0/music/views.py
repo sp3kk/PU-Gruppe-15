@@ -5,9 +5,18 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from .forms import AlbumForm, SongForm, UserForm
 from .models import Album, Song
+from .forms import QuestionForm
 
 AUDIO_FILE_TYPES = ['wav', 'mp3', 'ogg']
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
+
+
+def question(request):
+    form_class = QuestionForm
+
+    return render(request, 'Fagsider/questions.html',{
+        'form':form_class
+    })
 
 
 def TDT4140_a(request):

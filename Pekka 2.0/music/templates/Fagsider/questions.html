@@ -1,0 +1,14 @@
+{% extends 'music/base.html' %}
+{% block title %} New Question{% endblock %}
+{% block songs_active %}active{% endblock %}
+
+
+{% block body %}
+<h1>  New Question</h1>
+
+<form role="form" action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
