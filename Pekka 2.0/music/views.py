@@ -36,19 +36,29 @@ def TTM4100_a(request):
 
 
 def TDT4140_q(request):
-    return render(request, 'Fagsider/TDT4140_q.html')
+    form_class = QuestionForm
+    return render(request, 'Fagsider/TDT4140_q.html',{
+    'form':form_class})
 
 def TDT4110_q(request):
-    return render(request, 'Fagsider/TDT4110_q.html')
+    form_class = QuestionForm
+    return render(request, 'Fagsider/TDT4110_q.html',{
+    'form':form_class})
 
 def TDT4145_q(request):
-    return render(request, 'Fagsider/TDT4145_q.html')
+    form_class = QuestionForm
+    return render(request, 'Fagsider/TDT4145_q.html',{
+    'form':form_class})
 
 def TDT4180_q(request):
-    return render(request, 'Fagsider/TDT4180_q.html')
+    form_class = QuestionForm
+    return render(request, 'Fagsider/TDT4180_q.html',{
+    'form':form_class})
 
 def TTM4100_q(request):
-    return render(request, 'Fagsider/TTM4100_q.html')
+    form_class = QuestionForm
+    return render(request, 'Fagsider/TTM4100_q.html',{
+    'form':form_class})
 
 
 def create_album(request):
