@@ -1,22 +1,32 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from django.db.models import Q
 from .forms import AlbumForm, SongForm, UserForm
 from .models import Album, Song
 from .forms import QuestionForm
+from . forms import *
+from .models import *
+from django.template import RequestContext
 
 AUDIO_FILE_TYPES = ['wav', 'mp3', 'ogg']
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
 
 
-def question(request):
-    form_class = QuestionForm
+def addQuestion(request):
+    form_class = QuestionForm()
 
-    return render(request, 'Fagsider/questions.html',{
-        'form':form_class
-    })
+    if request.POST:
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            question_title = QuestionForm.question_title
+            question_content = QuestionForm.content
+            return redirect('/Fagsider/questions.html')
+
+    return render_to_response('Fagsider/questions.html', {
+                              'form': form_class}, RequestContext(request))
+
 
 
 def TDT4140_a(request):

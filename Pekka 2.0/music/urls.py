@@ -29,6 +29,6 @@ urlpatterns = [
     url(r'^TDT4180_q/$', views.TDT4180_q),
     url(r'^TTM4100_q/$', views.TTM4100_q),
 
-    url(r'^questions/$', views.question, name = 'questions')
+    url(r'^questions/$', views.addQuestion, name = 'questions')
 
 ]

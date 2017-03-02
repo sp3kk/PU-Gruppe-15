@@ -1,15 +1,16 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from .models import Album, Song
+from .models import *
 
-class QuestionForm(forms.Form):
-    question_title = forms.CharField(required = True)
+class QuestionForm(forms.ModelForm):
 
-    content = forms.CharField(
-        required=True,
-        widget=forms.Textarea
-    )
+    question_content = forms.CharField(widget=forms.Textarea(attrs={'cols':30, 'rows': 10}))
+
+    class Meta:
+        model = Question
+        fields = ['question_title','question_content']
+
 
 
 
