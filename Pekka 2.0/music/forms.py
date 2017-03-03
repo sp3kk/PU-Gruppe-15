@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import ModelForm
+from django.forms import inlineformset_factory
 from django.contrib.auth.models import User
 
 from .models import *
@@ -6,10 +8,12 @@ from .models import *
 class QuestionForm(forms.ModelForm):
 
     question_content = forms.CharField(widget=forms.Textarea(attrs={'cols':30, 'rows': 10}))
-
     class Meta:
         model = Question
-        fields = ['question_title','question_content']
+        fields = ('question_title', 'question_content')
+
+
+
 
 
 

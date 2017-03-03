@@ -8,6 +8,7 @@ from .models import Album, Song
 from .forms import QuestionForm
 from . forms import *
 from .models import *
+import datetime
 from django.template import RequestContext
 
 AUDIO_FILE_TYPES = ['wav', 'mp3', 'ogg']
@@ -15,17 +16,17 @@ IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
 
 
 def addQuestion(request):
-    form_class = QuestionForm()
+    form = QuestionForm()
 
     if request.POST:
         form = QuestionForm(request.POST)
         if form.is_valid():
-            question_title = QuestionForm.question_title
-            question_content = QuestionForm.content
-            return redirect('/Fagsider/questions.html')
+            author = form.save()
+            question_title = QuestionForm.question_title.save()
+            question_content = QuestionForm.question_content.save()
+            return redirect('/index/')
 
-    return render_to_response('Fagsider/questions.html', {
-                              'form': form_class}, RequestContext(request))
+    return render_to_response('Fagsider/questions.html',{'form': form},context_type=RequestContext(request))
 
 
 
@@ -42,33 +43,62 @@ def TDT4180_a(request):
     return render(request, 'Fagsider/TDT4180_a.html')
 
 def TTM4100_a(request):
+    sub_code = 'TTM4100'
+    #connecter til databasen
+    all_questions = Question.objects.filter(sub_code = sub_code)
+
+
+
     return render(request, 'Fagsider/TTM4100_a.html')
 
 
 def TDT4140_q(request):
+    sub_code = 'TDT4140'
     form_class = QuestionForm
     return render(request, 'Fagsider/TDT4140_q.html',{
     'form':form_class})
 
 def TDT4110_q(request):
+    sub_code = 'TDT4110'
     form_class = QuestionForm
     return render(request, 'Fagsider/TDT4110_q.html',{
     'form':form_class})
 
 def TDT4145_q(request):
+    sub_code = 'TDT4145'
     form_class = QuestionForm
     return render(request, 'Fagsider/TDT4145_q.html',{
     'form':form_class})
 
 def TDT4180_q(request):
+    sub_code = 'TDT4180'
     form_class = QuestionForm
     return render(request, 'Fagsider/TDT4180_q.html',{
     'form':form_class})
 
 def TTM4100_q(request):
-    form_class = QuestionForm
-    return render(request, 'Fagsider/TTM4100_q.html',{
-    'form':form_class})
+    sub_code = 'TTM4100'
+    form = QuestionForm()
+
+
+    form = QuestionForm(request.POST or None)
+    if form.is_valid():
+        question = form.save(commit = False)
+        question.question_title = request.POST['question_title']
+        question.question_content = request.POST['question_content']
+        question.sub_code = sub_code
+        question.author = request.user
+        question.ask_time = datetime.datetime.now()
+
+        """""
+        question.question_title= form.question_title.save_form_data()
+        question.question_content = form.question_content
+        return redirect('/music/')
+        """""
+        question.save()
+
+    return render(request, 'Fagsider/TTM4100_q.html',{'form':form})
+
 
 
 def create_album(request):
