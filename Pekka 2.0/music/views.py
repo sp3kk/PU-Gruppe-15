@@ -10,6 +10,7 @@ from . forms import *
 from .models import *
 import datetime
 from django.template import RequestContext
+from difflib import SequenceMatcher
 
 AUDIO_FILE_TYPES = ['wav', 'mp3', 'ogg']
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
@@ -28,7 +29,19 @@ def addQuestion(request):
 
     return render_to_response('Fagsider/questions.html',{'form': form},context_type=RequestContext(request))
 
+#-------------------------------------------------------------------------------------------------------------------------------------
 
+#Her kommer bot. Retur likehet vill bli tidligere spørsmål med svar når det er klart
+
+def similar(a, b):
+    likhet = SequenceMatcher(None, a, b).ratio()
+    if likhet >= 0.5:
+        likhet = request.session.get('likhet')
+        return likhet
+    else:
+        return none
+
+#-------------------------------------------------------------------------------------------------------------------------------------
 
 def TDT4140_a(request):
     return render(request, 'Fagsider/TDT4140_a.html')
