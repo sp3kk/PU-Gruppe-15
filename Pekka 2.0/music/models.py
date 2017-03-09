@@ -18,6 +18,9 @@ class Question(models.Model):
     def __str__(self):
         return self.question_title +" - "+ self.question_content
 
+#    def get_votes(self):
+#        return len(QuestionVotes.vote_list.filter(question=self))
+
 
 class QuestionVotes(models.Model):
 
@@ -35,7 +38,7 @@ class QuestionVotes(models.Model):
     @staticmethod
     def vote(question, user):
         if QuestionVotes.vote_list.get(user=user, question=question) is None:
-            q_vote = QuestionVotes(question, user)
+            q_vote = QuestionVotes(question=question, user=user)
             q_vote.save()
         else:
             QuestionVotes.vote_list.filter(user=user, question=question).delete()
