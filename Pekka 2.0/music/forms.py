@@ -8,7 +8,7 @@ from .models import *
 
 class QuestionForm(forms.ModelForm):
 
-    question_content = forms.CharField(widget=forms.Textarea(attrs={'cols':30, 'rows': 10}))
+    question_content = forms.CharField(widget=forms.Textarea(attrs={'cols':30, 'rows': 10}), label='')
 
     class Meta:
         model = Question

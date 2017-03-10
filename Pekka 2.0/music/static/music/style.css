@@ -27,12 +27,34 @@ ul.errorlist > li {
     color: #FDB230;
 }
 
+h1 { color: #222; font-family: 'Satisfy', cursive; font-size: 130px;
+    font-weight: normal; line-height: 48px; margin-top:80px; text-align: center;
+    text-shadow: 0px 2px 4px #fff; margin-bottom:80px; }
+
+label #id_question_title{
+
+}
+
+#duplicate{
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    margin-left: 40%;
+    margin-top: -367px;
+    margin-right: 3%;
+
+}
+
 button{
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
     padding: 15px 32px;
-    margin-left: 25%;
+    margin-left: 29.2%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -88,6 +110,7 @@ textarea {
     width: 30%;
     height: 35%;
     padding: 12px 20px;
+    margin-left: 97px;
     box-sizing: border-box;
     border: 3px solid #ccc;
     border-radius: 4px;

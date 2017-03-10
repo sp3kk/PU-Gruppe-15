@@ -1,11 +1,11 @@
 {% extends 'music/base.html' %}
-{% block title %} New Question{% endblock %}
+{% block title %}New Question{% endblock %}
 {% block songs_active %}active{% endblock %}
 
 
 {% block body %}
 <div align = 'center'>
-    <h1>  New Question</h1>
+    <h1> New Question</h1>
 
         <form role="form" action="" method="post">
             {% csrf_token %}
@@ -13,4 +13,5 @@
             <input type="submit" value = 'submit'>Submit</input>
         </form>
 </div>
+
 {% endblock %}
