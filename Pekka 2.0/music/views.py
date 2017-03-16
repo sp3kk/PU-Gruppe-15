@@ -21,9 +21,10 @@ IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
 def detail(request, question_id):
     try:
         question = Question.objects.get(pk = question_id)
+        answers = question.answer_set.all()
     except Question.DoesNotExist:
         raise Http404("Question does not exist")
-    return render(request, 'music/detail.html', {'question_title': question.question_title, 'question_content': question.question_content})
+    return render(request, 'music/detail.html', {'question_title': question.question_title, 'question_content': question.question_content, 'answers' : answers} )
 
 
 def addQuestion(request):
