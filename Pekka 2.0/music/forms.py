@@ -16,6 +16,15 @@ class QuestionForm(forms.Form):
         fields = ('question_title', 'question_content')
 
 
+class AnswerForm(forms.Form):
+
+    answer_text = forms.CharField(help_text="Write in an answer to this question")
+
+    class Meta:
+        model = Question
+        fields = 'answer_text'
+
+
 
 class QuestionVotesForm(forms.ModelForm):
     voteOn = forms.BooleanField(widget=forms.CheckboxInput())

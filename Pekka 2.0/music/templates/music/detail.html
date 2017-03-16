@@ -20,6 +20,13 @@
         {% endfor %}
     </ul>
 
+    <form role="form" action="" method="post">
+
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+        {% csrf_token %}
+    </form>
+
 
 
     {% endblock %}

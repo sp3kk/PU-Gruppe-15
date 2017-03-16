@@ -23,6 +23,7 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
+    author = models.ForeignKey(User, default=1)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer_text = models.CharField(max_length=2000)
     answer_time = models.DateTimeField()

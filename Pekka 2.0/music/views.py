@@ -22,13 +22,31 @@ def detail(request, question_id):
     try:
         question = Question.objects.get(pk = question_id)
         answers = question.answer_set.all()
+
+        form = AnswerForm(request.POST)
+
+        if request.method == 'POST':
+
+            if form.is_valid():
+                answer = Answer()
+                answer.answer_text=form.data['answer_text']
+                answer.author = request.user
+                answer.answer_time = datetime.datetime.now()
+                answer.question = question
+                answer.save()
+                form = AnswerForm()
+                return render(request, 'music/detail.html', {'question_title': question.question_title, 'question_content': question.question_content, 'answers' : answers, 'form': form})
+
+
     except Question.DoesNotExist:
         raise Http404("Question does not exist")
-    return render(request, 'music/detail.html', {'question_title': question.question_title, 'question_content': question.question_content, 'answers' : answers} )
+    return render(request, 'music/detail.html', {'question_title': question.question_title, 'question_content': question.question_content, 'answers' : answers, 'form': form})
 
 
 def addQuestion(request):
     form = QuestionForm()
+
+
 
     if request.POST:
         form = QuestionForm(request.POST)
