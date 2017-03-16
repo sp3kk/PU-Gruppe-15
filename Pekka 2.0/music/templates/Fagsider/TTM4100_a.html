@@ -11,11 +11,11 @@
         Here are all questions asked in this subject
     </h3>
     {% if all_questions_with_sub_code %}
-    <ul>
+    <ol>
         {% for question in all_questions_with_sub_code %}
-        <li><a href="/music/{{ question.id }}/">{{question.question_title}}</a></li>
+            <li><a style="font-size: large;" href="/music/{{ question.id }}/">{{question.question_title}}</a></li>
         {% endfor %}
-    </ul>
+    </ol>
     {% else %}
     <h3>There are no questions asked in this subject yet. </h3>
     {% endif %}

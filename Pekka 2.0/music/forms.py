@@ -8,8 +8,8 @@ from .models import *
 
 class QuestionForm(forms.Form):
 
-    question_title = forms.CharField(help_text="Give your question a title")
-    question_content = forms.CharField(widget=forms.Textarea(attrs={'cols': 30, 'rows': 10}), help_text="Write your question here: ")
+    question_title = forms.CharField(help_text="")
+    question_content = forms.CharField(widget=forms.Textarea(attrs={'cols': 30, 'rows': 10}), help_text="")
 
     class Meta:
         model = Question
@@ -18,7 +18,7 @@ class QuestionForm(forms.Form):
 
 class AnswerForm(forms.Form):
 
-    answer_text = forms.CharField(help_text="Write in an answer to this question")
+    answer_text = forms.CharField(help_text="")
 
     class Meta:
         model = Question

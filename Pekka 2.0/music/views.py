@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
-from django.http import JsonResponse, HttpResponseRedirect, HttpResponse, Http404
+from django.http import JsonResponse, HttpResponseRedirect, HttpResponse, Http404, request
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response, reverse
 from django.db.models import Q
 from .forms import AlbumForm, SongForm, UserForm
@@ -65,10 +65,10 @@ def addQuestion(request):
 def similar(a, b):
     likhet = SequenceMatcher(None, a, b).ratio()
     if likhet >= 0.5:
-        likhet = request.session.get('likhet')
+        likhet = request.session.get(b)
         return likhet
     else:
-        return none
+        return "ikke noe"
 
 #-------------------------------------------------------------------------------------------------------------------------------------
 
