@@ -6,8 +6,8 @@ import datetime
 #husk: python manage.py makemigrations
 #python manage.py migrate
 
-class Question(models.Model):
 
+class Question(models.Model):
     author = models.ForeignKey(User, default=1)
     question_title = models.CharField(max_length=100)
     question_content = models.CharField(max_length=2000)
@@ -20,6 +20,16 @@ class Question(models.Model):
 
 #    def get_votes(self):
 #        return len(QuestionVotes.vote_list.filter(question=self))
+
+
+class Answer(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    answer_text = models.CharField(max_length=2000)
+    answer_time = models.DateTimeField()
+    is_good_answer = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.answer_text
 
 
 class QuestionVotes(models.Model):

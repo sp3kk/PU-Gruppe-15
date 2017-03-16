@@ -6,3 +6,4 @@ admin.site.register(Song)
 
 #for å gjøre questions tilgjengelig på admin.
 admin.site.register(Question)
+admin.site.register(Answer)

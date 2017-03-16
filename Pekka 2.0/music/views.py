@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
-from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404, redirect, render_to_response
+from django.http import JsonResponse, HttpResponseRedirect, HttpResponse, Http404
+from django.shortcuts import render, get_object_or_404, redirect, render_to_response, reverse
 from django.db.models import Q
 from .forms import AlbumForm, SongForm, UserForm
 from .models import Album, Song
@@ -9,11 +9,21 @@ from .forms import QuestionForm
 from . forms import *
 from .models import *
 import datetime
-from django.template import RequestContext
+from django.template import RequestContext, loader
 from difflib import SequenceMatcher
+
 
 AUDIO_FILE_TYPES = ['wav', 'mp3', 'ogg']
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
+
+
+
+def detail(request, question_id):
+    try:
+        question = Question.objects.get(pk = question_id)
+    except Question.DoesNotExist:
+        raise Http404("Question does not exist")
+    return render(request, 'music/detail.html', {'question_title': question.question_title, 'question_content': question.question_content})
 
 
 def addQuestion(request):
@@ -55,14 +65,16 @@ def TDT4145_a(request):
 def TDT4180_a(request):
     return render(request, 'Fagsider/TDT4180_a.html')
 
+
 def TTM4100_a(request):
     sub_code = 'TTM4100'
     #connecter til databasen
-    all_questions = Question.objects.filter(sub_code = sub_code)
+    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
+    context = {
+        'all_questions_with_sub_code' : all_questions_with_sub_code
+    }
+    return render(request, 'Fagsider/TTM4100_a.html', context)
 
-
-
-    return render(request, 'Fagsider/TTM4100_a.html')
 
 
 def TDT4140_q(request):
@@ -92,23 +104,24 @@ def TDT4180_q(request):
 def TTM4100_q(request):
     sub_code = 'TTM4100'
     form = QuestionForm()
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
 
-
-    form = QuestionForm(request.POST or None)
-    if form.is_valid():
-        question = form.save(commit = False)
-        question.question_title = request.POST['question_title']
-        question.question_content = request.POST['question_content']
-        question.sub_code = sub_code
-        question.author = request.user
-        question.ask_time = datetime.datetime.now()
-
+        if form.is_valid():
+            question = Question()
+            question.question_title = form.data['question_title']
+            question.question_content = form.data['question_content']
+            question.sub_code = sub_code
+            question.author = request.user
+            question.ask_time = datetime.datetime.now()
+            question.save()
+            return HttpResponseRedirect(reverse('TTM4100_a'))
         """""
         question.question_title= form.question_title.save_form_data()
         question.question_content = form.question_content
         return redirect('/music/')
         """""
-        question.save()
+
 
     return render(request, 'Fagsider/TTM4100_q.html',{'form':form})
 
@@ -188,14 +201,6 @@ def delete_song(request, album_id, song_id):
     song.delete()
     return render(request, 'music/detail.html', {'album': album})
 
-
-def detail(request, album_id):
-    if not request.user.is_authenticated():
-        return render(request, 'music/login.html')
-    else:
-        user = request.user
-        album = get_object_or_404(Album, pk=album_id)
-        return render(request, 'music/detail.html', {'album': album, 'user': user})
 
 
 def favorite(request, song_id):

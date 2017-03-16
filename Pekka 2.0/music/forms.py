@@ -6,13 +6,15 @@ from django.contrib.auth.models import User
 from .models import *
 
 
-class QuestionForm(forms.ModelForm):
+class QuestionForm(forms.Form):
 
-    question_content = forms.CharField(widget=forms.Textarea(attrs={'cols':30, 'rows': 10}), label='')
+    question_title = forms.CharField(help_text="Give your question a title")
+    question_content = forms.CharField(widget=forms.Textarea(attrs={'cols': 30, 'rows': 10}), help_text="Write your question here: ")
 
     class Meta:
         model = Question
         fields = ('question_title', 'question_content')
+
 
 
 class QuestionVotesForm(forms.ModelForm):
