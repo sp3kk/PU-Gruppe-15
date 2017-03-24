@@ -134,7 +134,7 @@ def TTM4100_q(request):
             question.author = request.user
             question.ask_time = datetime.datetime.now()
             question.save()
-            return HttpResponseRedirect(reverse('TTM4100_a'))
+            return redirect("../../music/TTM4100_a")
         """""
         question.question_title= form.question_title.save_form_data()
         question.question_content = form.question_content
