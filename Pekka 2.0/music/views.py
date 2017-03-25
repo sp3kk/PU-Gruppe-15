@@ -3,25 +3,27 @@ from django.contrib.auth import logout
 from django.http import JsonResponse, HttpResponseRedirect, HttpResponse, Http404, request
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response, reverse
 from django.db.models import Q
-from .forms import AlbumForm, SongForm, UserForm
-from .models import Album, Song
-from .forms import QuestionForm
 from . forms import *
 from .models import *
 import datetime
 from django.template import RequestContext, loader
 from difflib import SequenceMatcher
-
+try:
+    from django.utils import simplejson as json
+except ImportError:
+    import json
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 AUDIO_FILE_TYPES = ['wav', 'mp3', 'ogg']
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
 
 
-
 def detail(request, question_id):
     try:
-        question = Question.objects.get(pk = question_id)
+        question = Question.objects.get(pk=question_id)
         answers = question.answer_set.all()
+        score = question.get_score()
 
         form = AnswerForm(request.POST)
 
@@ -35,19 +37,21 @@ def detail(request, question_id):
                 answer.question = question
                 answer.save()
                 form = AnswerForm()
-                return render(request, 'music/detail.html', {'question_title': question.question_title, 'question_content': question.question_content, 'answers' : answers, 'form': form})
-
+                return render(request, 'music/detail.html', {'score': score,
+                                                             'question_title': question.question_title,
+                                                             'question_content': question.question_content,
+                                                             'answers': answers, 'form': form})
 
     except Question.DoesNotExist:
         raise Http404("Question does not exist")
-    return render(request, 'music/detail.html', {'question_title': question.question_title, 'question_content': question.question_content, 'answers' : answers, 'form': form})
+    return render(request, 'music/detail.html', {'score': score,
+                                                 'question_title': question.question_title,
+                                                 'question_content': question.question_content,
+                                                 'answers' : answers, 'form': form})
 
 
 def addQuestion(request):
     form = QuestionForm()
-
-
-
     if request.POST:
         form = QuestionForm(request.POST)
         if form.is_valid():
@@ -56,7 +60,40 @@ def addQuestion(request):
             question_content = QuestionForm.question_content.save()
             return redirect('/index/')
 
-    return render_to_response('Fagsider/questions.html',{'form': form},context_type=RequestContext(request))
+    return render_to_response('Fagsider/questions.html', {'form': form}, context_type=RequestContext(request))
+
+
+def vote_question(request, question_id):
+    question = Question.objects.get(pk=question_id)
+    form = QuestionVotesForm()
+    if request.method == 'POST':
+        form = QuestionVotesForm(request.POST)
+        if form.is_valid():
+            qv = QuestionVotes()
+            qv.user = request.user
+            qv.question = question
+            qv.val = form.data['val']
+            if not QuestionVotes.objects.filter(question=qv.question, user=qv.user):
+                qv.save()
+            else:
+                existing_votes = QuestionVotes.objects.filter(question=question, user=qv.user)
+                for vote in existing_votes: # om noen skulle ha brutt seg inn i DB
+                    vote.delete()
+                qv.save()
+            return render(request, template_name='music/vote_question.html', context=
+                          {'question_title': question.question_title,
+                           'question_content': question.question_content,
+                           'score': question.get_score(),
+                           'form': form,
+                           })
+    return render(request, template_name='music/vote_question.html', context={
+            'question_id': question_id,
+            'question_title': question.question_title,
+            'question_content': question.question_content,
+            'score': question.get_score(),
+            'form': form,
+             })
+
 
 #-------------------------------------------------------------------------------------------------------------------------------------
 
@@ -87,12 +124,12 @@ def TDT4180_a(request):
 
 def TTM4100_a(request):
     sub_code = 'TTM4100'
-    #connecter til databasen
+    # connecter til databasen
     all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
     context = {
-        'all_questions_with_sub_code' : all_questions_with_sub_code
+        'all_questions_with_sub_code': all_questions_with_sub_code,
     }
-    return render(request, 'Fagsider/TTM4100_a.html', context)
+    return render(request, 'Fagsider/TTM4100_a.html', context=context)
 
 
 
@@ -140,9 +177,7 @@ def TTM4100_q(request):
         question.question_content = form.question_content
         return redirect('/music/')
         """""
-
-
-    return render(request, 'Fagsider/TTM4100_q.html',{'form':form})
+    return render(request, 'Fagsider/TTM4100_q.html', {'form': form})
 
 
 

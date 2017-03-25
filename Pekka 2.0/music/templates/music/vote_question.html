@@ -1,0 +1,26 @@
+{% extends 'music/base.html' %}
+
+{% block body %}
+    <h3>Vote on this question</h3>
+    <h4>Current score: {{score}}</h4>
+
+    <a href=" ../ " data-render-panel-url="back">
+        <h2>{{question_title}}</h2>
+    </a>
+        <br>
+        {{question_content}}
+        <br>
+        <br>
+
+        <form role="form" action="" method="post">
+            {{ form.as_p }}
+
+            <a href="../">
+            <button type="submit">Submit</button>
+            </a>
+
+            {% csrf_token %}
+
+        </form>
+
+    {% endblock %}

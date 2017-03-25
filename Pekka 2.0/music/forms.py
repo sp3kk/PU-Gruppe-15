@@ -25,13 +25,14 @@ class AnswerForm(forms.Form):
         fields = 'answer_text'
 
 
-
 class QuestionVotesForm(forms.ModelForm):
-    voteOn = forms.BooleanField(widget=forms.CheckboxInput())
+    CHOICES = (('+1', 'Upvote'), ('0', 'Unvote'), ('-1', 'Downvote'))
+#    CHOICES = ('+1', '0', '-1')
+    val = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(), help_text="Vote for something")
 
     class Meta:
         model = QuestionVotes
-        fields = ()
+        exclude = ('question', 'user',)
 
 # la stå
 # class CommentVotesForm(models.ModelForm):

@@ -1,6 +1,8 @@
 from django.contrib.auth.models import Permission, User
 from django.db import models
 import datetime
+from django.template.defaultfilters import slugify
+
 
 #hver gang man endrer her HUSK!!!!
 #husk: python manage.py makemigrations
@@ -15,11 +17,17 @@ class Question(models.Model):
     sub_code = models.CharField(max_length=10)
     ask_time = models.DateTimeField()
 
-    def __str__(self):
-        return self.question_title +" - "+ self.question_content
+    def get_score(self):
+        up = QuestionVotes.objects.filter(question=self, val=+1)
+        down = QuestionVotes.objects.filter(question=self, val=-1)
+        res = up.count()-down.count()
+        return res
 
-#    def get_votes(self):
-#        return len(QuestionVotes.vote_list.filter(question=self))
+    def __str__(self):
+        return self.question_title + " - " + self.question_content
+
+    def vote(self, author, val):
+        QuestionVotes.qvote(question=self, user=author, val=val)
 
 
 class Answer(models.Model):
@@ -34,25 +42,25 @@ class Answer(models.Model):
 
 
 class QuestionVotes(models.Model):
-
     question = models.ForeignKey(Question)
+    val = models.IntegerField(default=0)
     user = models.ForeignKey(User)
-    vote_list = models.Manager
-
-    def __init__(self, quest, voter):
-        self.question = quest
-        self.user = voter
 
     def __str__(self):
-        return
+        return 'user ' + str(self.user) + ' gave ' + str(self.val) \
+               + ' points to question: \' ' + str(self.question.question_title) + '\''
 
     @staticmethod
-    def vote(question, user):
-        if QuestionVotes.vote_list.get(user=user, question=question) is None:
-            q_vote = QuestionVotes(question=question, user=user)
+    def qvote(question, user, val):
+        q_vote = QuestionVotes(question=question, user=user, val=val)
+        existing_vote = QuestionVotes.objects.get(user=user, question=question)
+        if existing_vote is None:
             q_vote.save()
         else:
-            QuestionVotes.vote_list.filter(user=user, question=question).delete()
+            QuestionVotes.delete(user=user, question=question)
+            if existing_vote[0].val != 0:
+                q_vote.save()
+
 
 
 # la stå inntil videre
@@ -67,7 +75,7 @@ class QuestionVotes(models.Model):
 #        self.user = voter
 #
 #    @staticmethod
-#    def vote(user, comment):
+#    def vote_question(user, comment):
 #        if CommentVotes.vote_list.get(user=user, comment=comment) is None:
 #            c_vote = CommentVotes(comment, user)
 #            c_vote.save()
