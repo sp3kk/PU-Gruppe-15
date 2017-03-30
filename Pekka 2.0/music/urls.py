@@ -31,6 +31,8 @@ urlpatterns = [
     url(r'^TDT4180_q/$', views.TDT4180_q),
     url(r'^TTM4100_q/$', views.TTM4100_q),
 
+    url(r'^TTM4100_b/$', views.TTM4100_b),
+
     url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'),
     url(r'^vote_question/$', views.vote_question, name='vote_question'),
     url(r'^(?P<question_id>[0-9]+)/vote_question/$', views.vote_question, name='vote_question'),
