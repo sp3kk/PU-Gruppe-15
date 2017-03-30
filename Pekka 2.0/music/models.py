@@ -40,6 +40,19 @@ class Answer(models.Model):
     def __str__(self):
         return self.answer_text
 
+    def accept_answer(self, user):
+        if self.author == user:
+            self.is_good_answer = True
+
+    def get_score(self):
+        up = AnswerVotes.objects.filter(question=self, val=+1)
+        down = AnswerVotes.objects.filter(question=self, val=-1)
+        res = up.count()-down.count()
+        return res
+
+    def vote(self, author, val):
+        AnswerVotes.ansvote(question=self, user=author, val=val)
+
 
 class QuestionVotes(models.Model):
     question = models.ForeignKey(Question)
@@ -62,10 +75,27 @@ class QuestionVotes(models.Model):
                 q_vote.save()
 
 
+class AnswerVotes(models.Model):
+    ans = models.ForeignKey(Answer)
+    val = models.IntegerField(default=0)
+    user = models.ForeignKey(User)
 
-# la stå inntil videre
+    def __str__(self):
+        return 'user ' + str(self.user) + ' gave ' + str(self.val) \
+               + ' points to ans: \' ' + str(self.question.question_title) + '\''
+
+    @staticmethod
+    def ansvote(answer, user, val):
+        ans_vote = Answer(ans=answer, user=user, val=val)
+        existing_vote = AnswerVotes.objects.get(user=user, ans=answer)
+        if existing_vote is None:
+            ans_vote.save()
+        else:
+            AnswerVotes.delete(user=user, ans=answer)
+            if existing_vote[0].val != 0:
+                ans_vote.save()
+
 # class CommentVotes(models.Model):
-
 #    comment = models.ForeignKey(Comment, unique=True)
 #    user = models.ForeignKey(User, unique=True)
 #    vote_list = models.Manager

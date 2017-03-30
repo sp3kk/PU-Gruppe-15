@@ -1,14 +1,15 @@
 {% extends 'music/base.html' %}
 
 {% block body %}
-    <h3>Vote on this question</h3>
+
+    <h4>Vote on this question</h4>
     <h4>Current score: {{score}}</h4>
 
     <a href="javascript:history.go(-1)" class="btn btn-default">Back to question</a>
-    <h2>{{question_title}}</h2>
+        <h2>{{question.question_title}}</h2>
     </a>
         <br>
-        {{question_content}}
+        {{question.question_content}}
         <br>
         <br>
 

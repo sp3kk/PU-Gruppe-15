@@ -77,7 +77,7 @@ def vote_question(request, question_id):
                 qv.save()
             else:
                 existing_votes = QuestionVotes.objects.filter(question=question, user=qv.user)
-                for vote in existing_votes: # om noen skulle ha brutt seg inn i DB
+                for vote in existing_votes:
                     vote.delete()
                 qv.save()
             return render(request, template_name='music/vote_question.html', context=
@@ -94,6 +94,36 @@ def vote_question(request, question_id):
             'form': form,
              })
 
+
+def vote_answer(request, answer_id):
+    answer = AnswerVotes.objects.get(pk=answer_id)
+    form = AnswerVotesForm()
+    if request.method == 'POST':
+        form = AnswerVotesForm(request.POST)
+        if form.is_valid():
+            answ = AnswerVotes()
+            answ.user = request.user
+            answ.ans = answer
+            answ.val = form.data['val']
+            if not AnswerVotes.objects.filter(question=answ.question, user=answ.user):
+                answ.save()
+            else:
+                existing_votes = AnswerVotes.objects.filter(ans=answer, user=answ.user)
+                for vote in existing_votes:
+                    vote.delete()
+                answ.save()
+            return render(request, template_name='music/vote_question.html', context=
+                          {'original_question': answer.question,
+                           'answer': answer,
+                           'score': answer.get_score(),
+                           'form': form,
+                           })
+    return render(request, template_name='music/vote_question.html', context=
+                  {'original_question': answer.question,
+                   'answer': answer,
+                   'score': answer.get_score(),
+                   'form': form,
+                   })
 
 #-------------------------------------------------------------------------------------------------------------------------------------
 

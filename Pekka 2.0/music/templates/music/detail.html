@@ -9,12 +9,14 @@
 
     <h1>{{question_title}}</h1>
     <h3>Current score: {{score}}</h3>
-    <h3>Question score: <a href="vote_question/" method="post"> RATE ME</a> </h3>
+    <h4><a href="vote_question/" method="post"> Rate question</a> </h4>
     <h3>{{question_content}}</h3>
-
 |       <ul>
+        <p>Rate answers by clicking on their score!</p>
         {% for answer in answers %}
-        <li> {{ answer.answer_text }} </li>
+
+        <li> <a href="vote_answer.html"> {{ answer.get_votes() }} </a>  &nbsp; {{ answer.answer_text }} </li>
+
         {% endfor %}
     </ul>
 
