@@ -131,6 +131,27 @@ def TTM4100_a(request):
     }
     return render(request, 'Fagsider/TTM4100_a.html', context=context)
 
+def TTM4100_b(request):
+    global c
+    sub_code = 'TTM4100'
+    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
+    similar_questions = []
+
+    a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
+    a_content = a.question_content
+
+    for questions in all_questions_with_sub_code:
+        b = questions.question_content
+
+        likhet = SequenceMatcher(None, a_content, b).ratio()
+        if likhet >= 0.5:
+            similar_questions.append(questions)
+
+    context = {
+        'similar_questions': similar_questions
+    }
+
+    return render(request, 'Fagsider/TTM4100_b.html', context)
 
 
 def TDT4140_q(request):

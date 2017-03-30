@@ -1,0 +1,31 @@
+{% extends 'music/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}TTM4100{% endblock %}</title>
+</head>
+<body>
+{% block body %}
+<h1>Similar questions already asked</h1>
+
+<div align = 'bottom' id="duplicate">
+
+
+
+ {% if similar_questions %}
+    <ol>
+        {% for question in similar_questions %}
+            <li><a style="font-size: large;" href="/music/{{ question.id }}/">{{question.question_title}}</a></li>
+        {% endfor %}
+    </ol>
+    {% else %}
+    <h3>There are no questions asked in this subject yet. </h3>
+    {% endif %}
+
+</div>
+{% endblock %}
+
+
+</body>
+</html>
