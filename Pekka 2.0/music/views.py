@@ -8,10 +8,7 @@ from .models import *
 import datetime
 from django.template import RequestContext, loader
 from difflib import SequenceMatcher
-try:
-    from django.utils import simplejson as json
-except ImportError:
-    import json
+from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 
@@ -40,14 +37,15 @@ def detail(request, question_id):
                 return render(request, 'music/detail.html', {'score': score,
                                                              'question_title': question.question_title,
                                                              'question_content': question.question_content,
-                                                             'answers': answers, 'form': form})
+                                                             'answers': answers, 'form': form,
+                                                             })
 
     except Question.DoesNotExist:
         raise Http404("Question does not exist")
     return render(request, 'music/detail.html', {'score': score,
                                                  'question_title': question.question_title,
                                                  'question_content': question.question_content,
-                                                 'answers' : answers, 'form': form})
+                                                 'answers': answers, 'form': form})
 
 
 def addQuestion(request):
@@ -66,6 +64,7 @@ def addQuestion(request):
 def vote_question(request, question_id):
     question = Question.objects.get(pk=question_id)
     form = QuestionVotesForm()
+    previous_page = request.META['HTTP_REFERER']
     if request.method == 'POST':
         form = QuestionVotesForm(request.POST)
         if form.is_valid():
@@ -77,23 +76,45 @@ def vote_question(request, question_id):
                 qv.save()
             else:
                 existing_votes = QuestionVotes.objects.filter(question=question, user=qv.user)
-                for vote in existing_votes: # om noen skulle ha brutt seg inn i DB
+                for vote in existing_votes:
                     vote.delete()
                 qv.save()
-            return render(request, template_name='music/vote_question.html', context=
-                          {'question_title': question.question_title,
-                           'question_content': question.question_content,
-                           'score': question.get_score(),
-                           'form': form,
-                           })
+            return HttpResponseRedirect('/' + question_id)
     return render(request, template_name='music/vote_question.html', context={
             'question_id': question_id,
             'question_title': question.question_title,
             'question_content': question.question_content,
             'score': question.get_score(),
             'form': form,
-             })
+            'previous_page': previous_page,
+    })
 
+
+def vote_answer(request, answer_id):
+    answer = Answer.objects.get(pk=answer_id)
+    form = AnswerVotesForm()
+    currentScore = answer.get_score()
+    if request.method == 'POST':
+        form = AnswerVotesForm(request.POST)
+        if form.is_valid():
+            answ = AnswerVotes()
+            answ.user = request.user
+            answ.ans = answer
+            answ.val = form.data['val']
+            if not AnswerVotes.objects.filter(ans=answer, user=answ.user):
+                answ.save()
+            else:
+                existing_votes = AnswerVotes.objects.filter(ans=answer, user=answ.user)
+                for vote in existing_votes:
+                    vote.delete()
+                answ.save()
+            return HttpResponseRedirect('/' + str(answer.question.id))
+    return render(request, template_name='music/vote_answer.html', context=
+                  {'question': answer.question,
+                   'answer': answer,
+                   'score': currentScore,
+                   'form': form,
+                   })
 
 #-------------------------------------------------------------------------------------------------------------------------------------
 
