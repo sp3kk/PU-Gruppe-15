@@ -26,20 +26,23 @@ class AnswerForm(forms.Form):
 
 
 class QuestionVotesForm(forms.ModelForm):
-    CHOICES = (('+1', 'Upvote'), ('0', 'Unvote'), ('-1', 'Downvote'))
+    CHOICES = (('+1', 'Upvote'), ('0', 'Remove vote'), ('-1', 'Downvote'))
 #    CHOICES = ('+1', '0', '-1')
-    val = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(), help_text="Vote for something")
+    val = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(), help_text="Don't forget to submit!")
 
     class Meta:
         model = QuestionVotes
-        exclude = ('question', 'user',)
+        exclude = ('question', 'user', 'val')
 
-# la stå
-# class CommentVotesForm(models.ModelForm):
-#    voteOn = forms.BooleanField(widget=forms.CheckboxInput(default=False))
-#
-#    class Meta:
-#        model=CommentVotes
+
+class AnswerVotesForm(forms.ModelForm):
+    CHOICES = (('+1', 'Upvote'), ('0', 'Remove vote'), ('-1', 'Downvote'))
+    #    CHOICES = ('+1', '0', '-1')
+    val = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(), help_text="Don't forget to submit!")
+
+    class Meta:
+        model = AnswerVotes
+        exclude = ('ans', 'user', 'val')
 
 
 class AlbumForm(forms.ModelForm):

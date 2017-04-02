@@ -1,19 +1,18 @@
 {% extends 'music/base.html' %}
 
-{% if form_is_saved and previous_page %}<meta http-equiv="refresh" content="0; url={{ previous_page }}" />{% endif %}
-
 {% block body %}
-    <h3>Vote on this question</h3>
+
+    <h4>Vote this answer</h4>
     <h4>Current score: {{score}}</h4>
 
-    <a href="javascript:history.go(-1)" class="btn btn-default">Back to question</a>
-    <h2>{{question_title}}</h2>
-    </a>
+    <a href="javascript:history.go(-1)" class="btn btn-default">Back to answers</a>
+
+        <h3>Current question: {{question.question_title}}</h3>
         <br>
-        {{question_content}}
-        <br>
+            {{question.question_content}}
         <br>
 
+            <p>{{answer}} </p>
         <form role="form" action="" method="post">
             {{ form.as_p }}
 
