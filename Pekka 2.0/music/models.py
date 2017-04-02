@@ -45,8 +45,8 @@ class Answer(models.Model):
             self.is_good_answer = True
 
     def get_score(self):
-        up = AnswerVotes.objects.filter(question=self, val=+1)
-        down = AnswerVotes.objects.filter(question=self, val=-1)
+        up = AnswerVotes.objects.filter(ans=self, val=+1)
+        down = AnswerVotes.objects.filter(ans=self, val=-1)
         res = up.count()-down.count()
         return res
 

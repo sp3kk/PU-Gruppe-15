@@ -2,17 +2,17 @@
 
 {% block body %}
 
-    <h4>Vote on this question</h4>
+    <h4>Vote this answer</h4>
     <h4>Current score: {{score}}</h4>
 
-    <a href="javascript:history.go(-1)" class="btn btn-default">Back to question</a>
-        <h2>{{question.question_title}}</h2>
-    </a>
+    <a href="javascript:history.go(-1)" class="btn btn-default">Back to answers</a>
+
+        <h3>Current question: {{question.question_title}}</h3>
         <br>
-        {{question.question_content}}
-        <br>
+            {{question.question_content}}
         <br>
 
+            <p>{{answer}} </p>
         <form role="form" action="" method="post">
             {{ form.as_p }}
 
