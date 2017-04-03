@@ -37,6 +37,7 @@ def detail(request, question_id):
                 return render(request, 'music/detail.html', {'score': score,
                                                              'question_title': question.question_title,
                                                              'question_content': question.question_content,
+                                                             'sub_code': question.sub_code,
                                                              'answers': answers, 'form': form,
                                                              })
 
@@ -45,6 +46,7 @@ def detail(request, question_id):
     return render(request, 'music/detail.html', {'score': score,
                                                  'question_title': question.question_title,
                                                  'question_content': question.question_content,
+                                                 'sub_code': question.sub_code,
                                                  'answers': answers, 'form': form})
 
 
