@@ -1,4 +1,5 @@
 {% extends 'music/base.html' %}
+<!-- SVAR SORTERES ETTER SCORE -->
 
 <head>
     <title>{% block title %}{{ question }}{% endblock %}</title>
@@ -14,8 +15,7 @@
 |       <ul>
         <p style="font-size:13px">Rate answers by clicking on their score!</p>
 
-        {% for answer in answers %}
-
+        {% for answer in answers|dictsortreversed:"get_score" %}
 
         <li> <a href="/{{answer.id}}/vote_answer/"> [ {{answer.get_score}} ]</a>  &nbsp; {{ answer.answer_text }} </li>
 

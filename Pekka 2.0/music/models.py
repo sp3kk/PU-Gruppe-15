@@ -95,23 +95,6 @@ class AnswerVotes(models.Model):
             if existing_vote[0].val != 0:
                 ans_vote.save()
 
-# class CommentVotes(models.Model):
-#    comment = models.ForeignKey(Comment, unique=True)
-#    user = models.ForeignKey(User, unique=True)
-#    vote_list = models.Manager
-#
-#    def __init__(self, comment, voter):
-#        self.comment = comment
-#        self.user = voter
-#
-#    @staticmethod
-#    def vote_question(user, comment):
-#        if CommentVotes.vote_list.get(user=user, comment=comment) is None:
-#            c_vote = CommentVotes(comment, user)
-#            c_vote.save()
-#        else:
-#            CommentVotes.vote_list.filter(user=user, comment=comment).delete()
-
 
 #kan slettes?
 class Album(models.Model):
