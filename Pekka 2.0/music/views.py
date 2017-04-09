@@ -117,19 +117,6 @@ def vote_answer(request, answer_id):
                    'score': currentScore,
                    'form': form,
                    })
-
-#-------------------------------------------------------------------------------------------------------------------------------------
-
-#Her kommer bot. Retur likehet vill bli tidligere spørsmål med svar når det er klart
-
-def similar(a, b):
-    likhet = SequenceMatcher(None, a, b).ratio()
-    if likhet >= 0.5:
-        likhet = request.session.get(b)
-        return likhet
-    else:
-        return "ikke noe"
-
 #-------------------------------------------------------------------------------------------------------------------------------------
 
 def TDT4140_a(request):
