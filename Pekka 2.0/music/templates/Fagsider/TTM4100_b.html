@@ -7,23 +7,18 @@
 </head>
 <body>
 {% block body %}
-<h1>Similar questions already asked</h1>
 
-<div align = 'bottom' id="duplicate">
-
-
-
- {% if similar_questions %}
+    <h3>Potentially similar questions that are already asked?</h3>
+    <p>{% if similar_questions %}
     <ol>
         {% for question in similar_questions %}
             <li><a style="font-size: large;" href="/music/{{ question.id }}/">{{question.question_title}}</a></li>
         {% endfor %}
     </ol>
     {% else %}
-    <h3>There are no questions asked in this subject yet. </h3>
+    <h3>There are no questions asked on your specific topic in this subject yet. </h3>
     {% endif %}
-
-</div>
+    </p>
 {% endblock %}
 
 
