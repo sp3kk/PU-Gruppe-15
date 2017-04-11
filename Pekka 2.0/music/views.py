@@ -154,7 +154,7 @@ def TTM4100_b(request):
         b = questions.question_content
 
         likhet = SequenceMatcher(None, a_content, b).ratio()
-        if likhet >= 0.5:
+        if likhet >= 0.5 and a_content != b:
             similar_questions.append(questions)
 
     context = {
