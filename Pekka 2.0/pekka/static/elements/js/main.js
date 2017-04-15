@@ -1,7 +1,7 @@
 
-var AlbumsListPage = {
+var AskListPage = {
 	init: function() {
-		this.$container = $('.albums-container');
+		this.$container = $('.ask-container');
 		this.render();
 		this.bindEvents();
 	},
@@ -27,9 +27,9 @@ var AlbumsListPage = {
 	}
 };
 
-var SongsListPage = {
+var AnswerListPage = {
 	init: function() {
-		this.$container = $('.songs-container');
+		this.$container = $('.answer-container');
 		this.render();
 		this.bindEvents();
 	},
@@ -56,6 +56,6 @@ var SongsListPage = {
 };
 
 $(document).ready(function() {
-	AlbumsListPage.init();
-	SongsListPage.init();
+	AskListPage.init();
+	AnswerListPage.init();
 });

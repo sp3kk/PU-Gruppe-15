@@ -216,20 +216,20 @@ def create_album(request):
                     'form': form,
                     'error_message': 'Image file must be PNG, JPG, or JPEG',
                 }
-                return render(request, 'html_pages/create_album.html', context)
+                return render(request, 'html_pages/about.html', context)
             album.save()
             return render(request, 'html_pages/detail.html', {'album': album})
         context = {
             "form": form,
         }
-        return render(request, 'html_pages/create_album.html', context)
+        return render(request, 'html_pages/about.html', context)
 
 
 def delete_album(request, album_id):
     album = Album.objects.get(pk=album_id)
     album.delete()
     albums = Album.objects.filter(user=request.user)
-    return render(request, 'html_pages/index.html', {'albums': albums})
+    return render(request, 'html_pages/ask.html', {'albums': albums})
 
 
 def delete_song(request, album_id, song_id):
@@ -283,12 +283,12 @@ def index(request):
             song_results = song_results.filter(
                 Q(song_title__icontains=query)
             ).distinct()
-            return render(request, 'html_pages/index.html', {
+            return render(request, 'html_pages/ask.html', {
                 'albums': albums,
                 'songs': song_results,
             })
         else:
-            return render(request, 'html_pages/index.html', {'albums': albums})
+            return render(request, 'html_pages/ask.html', {'albums': albums})
 
 
 def logout_user(request):
@@ -309,7 +309,7 @@ def login_user(request):
             if user.is_active:
                 login(request, user)
                 albums = Album.objects.filter(user=request.user)
-                return render(request, 'html_pages/index.html', {'albums': albums})
+                return render(request, 'html_pages/ask.html', {'albums': albums})
             else:
                 return render(request, 'html_pages/login.html', {'error_message': 'Your account has been disabled'})
         else:
@@ -330,7 +330,7 @@ def register(request):
             if user.is_active:
                 login(request, user)
                 albums = Album.objects.filter(user=request.user)
-                return render(request, 'html_pages/index.html', {'albums': albums})
+                return render(request, 'html_pages/ask.html', {'albums': albums})
     context = {
         "form": form,
     }
@@ -351,7 +351,7 @@ def songs(request, filter_by):
                 users_songs = users_songs.filter(is_favorite=True)
         except Album.DoesNotExist:
             users_songs = []
-        return render(request, 'html_pages/songs.html', {
+        return render(request, 'html_pages/answer.html', {
             'song_list': users_songs,
             'filter_by': filter_by,
         })
