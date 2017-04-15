@@ -50,19 +50,6 @@ def detail(request, question_id):
                                                  'answers': answers, 'form': form})
 
 
-def addQuestion(request):
-    form = QuestionForm()
-    if request.POST:
-        form = QuestionForm(request.POST)
-        if form.is_valid():
-            author = form.save()
-            question_title = QuestionForm.question_title.save()
-            question_content = QuestionForm.question_content.save()
-            return redirect('/index/')
-
-    return render_to_response('Fagsider/questions.html', {'form': form}, context_type=RequestContext(request))
-
-
 def vote_question(request, question_id):
     question = Question.objects.get(pk=question_id)
     form = QuestionVotesForm()
@@ -236,42 +223,7 @@ def create_album(request):
             "form": form,
         }
         return render(request, 'music/create_album.html', context)
-
-
-def create_song(request, album_id):
-    form = SongForm(request.POST or None, request.FILES or None)
-    album = get_object_or_404(Album, pk=album_id)
-    if form.is_valid():
-        albums_songs = album.song_set.all()
-        for s in albums_songs:
-            if s.song_title == form.cleaned_data.get("song_title"):
-                context = {
-                    'album': album,
-                    'form': form,
-                    'error_message': 'You already added that song',
-                }
-                return render(request, 'music/create_song.html', context)
-        song = form.save(commit=False)
-        song.album = album
-        song.audio_file = request.FILES['audio_file']
-        file_type = song.audio_file.url.split('.')[-1]
-        file_type = file_type.lower()
-        if file_type not in AUDIO_FILE_TYPES:
-            context = {
-                'album': album,
-                'form': form,
-                'error_message': 'Audio file must be WAV, MP3, or OGG',
-            }
-            return render(request, 'music/create_song.html', context)
-
-        song.save()
-        return render(request, 'music/detail.html', {'album': album})
-    context = {
-        'album': album,
-        'form': form,
-    }
-    return render(request, 'music/create_song.html', context)
-
+    
 
 def delete_album(request, album_id):
     album = Album.objects.get(pk=album_id)
