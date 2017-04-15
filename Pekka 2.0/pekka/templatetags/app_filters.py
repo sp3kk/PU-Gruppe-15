@@ -3,7 +3,7 @@ from django.http import JsonResponse, HttpResponseRedirect, HttpResponse, Http40
 from django.shortcuts import render
 from django.template import Library
 
-from music.models import Question
+from pekka.models import Question
 
 register = Library()
 

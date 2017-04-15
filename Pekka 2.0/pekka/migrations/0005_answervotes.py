@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('pekka', '0012_answer_author'),
+        ('pekka', '0004_answer_author'),
     ]
 
     operations = [
