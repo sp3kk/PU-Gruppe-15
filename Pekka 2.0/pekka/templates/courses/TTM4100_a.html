@@ -1,0 +1,20 @@
+{% extends 'html_pages/base.html' %}
+
+<!-- SPØRSMÅL SORTERES etter ønsket attr., feks. [ "ask_time" eller "get_score" ]-->
+
+{% block title %}TTM4100{% endblock %}
+
+{% block body %}
+    {% if all_questions_with_sub_code %}
+        <h3>Here are all questions asked in this subject</h3>
+        <ol>
+            {% for question in all_questions_with_sub_code|dictsortreversed:"get_score" %}
+                <li>
+                    <a style="font-size: large;" href="{% url 'pekka:detail' question.id %}">[ {{question.get_score}} ] &nbsp; {{question.question_title}}</a>
+                </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <h3>There are no questions asked in this subject yet.</h3>
+    {% endif %}
+{% endblock %}
