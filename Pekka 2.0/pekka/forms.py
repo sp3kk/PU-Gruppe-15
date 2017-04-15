@@ -45,20 +45,6 @@ class AnswerVotesForm(forms.ModelForm):
         exclude = ('ans', 'user', 'val')
 
 
-class AlbumForm(forms.ModelForm):
-
-    class Meta:
-        model = Album
-        fields = ['artist', 'album_title', 'genre', 'album_logo']
-
-
-class SongForm(forms.ModelForm):
-
-    class Meta:
-        model = Song
-        fields = ['song_title', 'audio_file']
-
-
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
 

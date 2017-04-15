@@ -7,6 +7,7 @@ from pekka.models import Question
 
 register = Library()
 
+
 def similar_to():
     sub_code = 'TTM4100'
     all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)

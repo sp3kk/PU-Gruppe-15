@@ -4,9 +4,10 @@ from django.contrib.auth import get_user_model
 
 c = Client()
 
-class Test_Models(TestCase):
+
+class TestModels(TestCase):
     def test_Question(self):
-        user = get_user_model().objects.create_user('test','1234')
+        user = get_user_model().objects.create_user('test', '1234')
         question = models.Question(author=user, question_content='her er ett spørsmål', question_title='Tittelen')
 
         self.assertEqual(question.is_answered, False)
@@ -19,9 +20,9 @@ class Test_Models(TestCase):
         self.assertEqual(answer.question.question_content, 'her er ett spørsmål')
 
 
-class Test_Views(TestCase):
+class TestViews(TestCase):
     def test_index_load(self):
         self.assertEqual(c.get('/').status_code, 200)
 
     def test_about(self):
-        self.assertEqual(c.get('/pekka/create_album/').status_code, 200)
+        self.assertEqual(c.get('/pekka/about/').status_code, 200)

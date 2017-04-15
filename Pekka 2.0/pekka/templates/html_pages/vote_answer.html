@@ -1,27 +1,19 @@
 {% extends 'html_pages/base.html' %}
 
 {% block body %}
-
     <h4>Vote this answer</h4>
     <h4>Current score: {{score}}</h4>
 
     <a href="javascript:history.go(-1)" class="btn btn-default">Back to answers</a>
 
-        <h3>Current question: {{question.question_title}}</h3>
-        <br>
-            {{question.question_content}}
-        <br>
-
-            <p>{{answer}} </p>
-        <form role="form" action="" method="post">
-            {{ form.as_p }}
-
-            <a href="../">
-            <button type="submit">Submit</button>
-            </a>
-
-            {% csrf_token %}
-
-        </form>
-
-    {% endblock %}
+    <h3>Current question: {{question.question_title}}</h3>
+    <br>
+    {{question.question_content}}
+    <br>
+    <p>{{answer}}</p>
+    <form role="form" action="" method="post">
+        {{ form.as_p }}
+        <a href="../"><button type="submit">Submit</button></a>
+        {% csrf_token %}
+    </form>
+{% endblock %}

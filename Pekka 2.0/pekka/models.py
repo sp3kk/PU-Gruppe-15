@@ -28,7 +28,7 @@ class Question(models.Model):
     def vote(self, author, val):
         QuestionVotes.qvote(question=self, user=author, val=val)
 
-    def getAuthorRating(self):
+    def get_author_rating(self):
         user_questions = Question.objects.filter(author=self.author)
         user_answers = Answer.objects.filter(author=self.author)
         question_ratings = 0
@@ -37,8 +37,9 @@ class Question(models.Model):
             question_ratings += q.get_score()
         for ans in user_answers:
             answer_ratings += ans.get_score()
-#        return 10
+#       return 10
         return question_ratings + answer_ratings
+
 
 class Answer(models.Model):
     author = models.ForeignKey(User, default=1)
@@ -63,7 +64,7 @@ class Answer(models.Model):
     def vote(self, author, val):
         AnswerVotes.ansvote(question=self, user=author, val=val)
 
-    def getAuthorRating(self):
+    def get_author_rating(self):
         user_questions = Question.objects.filter(author=self.author)
         user_answers = Answer.objects.filter(author=self.author)
         question_ratings = 0
@@ -72,7 +73,7 @@ class Answer(models.Model):
             question_ratings += q.get_score()
         for ans in user_answers:
             answer_ratings += ans.get_score()
-#        return 10
+#       return 10
         return question_ratings + answer_ratings
 
 
@@ -133,26 +134,3 @@ class AnswerVotes(models.Model):
 #            c_vote.save()
 #        else:
 #            CommentVotes.vote_list.filter(user=user, comment=comment).delete()
-
-
-#kan slettes?
-class Album(models.Model):
-    user = models.ForeignKey(User, default=1)
-    artist = models.CharField(max_length=250)
-    album_title = models.CharField(max_length=500)
-    genre = models.CharField(max_length=100)
-    album_logo = models.FileField()
-    is_favorite = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.album_title + ' - ' + self.artist
-
-#kan slettes?
-class Song(models.Model):
-    album = models.ForeignKey(Album, on_delete=models.CASCADE)
-    song_title = models.CharField(max_length=250)
-    audio_file = models.FileField(default='')
-    is_favorite = models.BooleanField(default=False)
-
-    def __str__(self):
-        return self.song_title

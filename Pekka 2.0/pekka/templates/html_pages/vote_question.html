@@ -7,22 +7,15 @@
     <h4>Current score: {{score}}</h4>
 
     <a href="javascript:history.go(-1)" class="btn btn-default">Back to question</a>
+
     <h2>{{question_title}}</h2>
-    </a>
-        <br>
-        {{question_content}}
-        <br>
-        <br>
-
-        <form role="form" action="" method="post">
-            {{ form.as_p }}
-
-            <a href="../">
-            <button type="submit">Submit</button>
-            </a>
-
-            {% csrf_token %}
-
-        </form>
-
-    {% endblock %}
+    <br>
+    {{question_content}}
+    <br>
+    <br>
+    <form role="form" action="" method="post">
+        {{ form.as_p }}
+        <a href="../"><button type="submit">Submit</button></a>
+        {% csrf_token %}
+    </form>
+{% endblock %}

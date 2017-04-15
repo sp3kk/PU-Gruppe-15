@@ -1,104 +1,51 @@
 {% extends 'html_pages/base.html' %}
+{% block title %}Ask{% endblock %}
 {% block ask_active %}active{% endblock %}
 
 {% block body %}
 <div class="ask-container container-fluid">
-
-    <!-- Her har vi Fag Kode oversikt for "spørr" siden -->
-     <div class="row">
-            <div class="col-sm-12">
-                <h3>Find your subject and ask away!</h3>
-            </div>
-
-            <div class="col-sm-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-
-                                <tr>
-                                    <th>Fag Kode</th>
-                                    <th>Fag Navn</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                    <a href="../TDT4140_q">TDT4140</a>
-                                    </td>
-                                    <td>
-                                    PU
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    <a href="../TDT4145_q">TDT4145</a>
-                                    </td>
-                                    <td>
-                                    Databaser og datamoddelering
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    <a href="../TDT4180_q">TDT4180</a>
-                                    </td>
-                                    <td>
-                                    Menneske-maskin interaksjon
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    <a href="../TTM4100_q">TTM4100</a>
-                                    </td>
-                                    <td>
-                                    Kommunikasjon, tjenester og nett
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    <a href="../TDT4110_q">TDT4110</a>
-                                    </td>
-                                    <td>
-                                    ITGK
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Find your subject and ask away!</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Emnekode</th>
+                                <th>Emnenavn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="{% url 'pekka:TDT4140_q' %}">TDT4140</a></td>
+                                <td>Programvareutvikling</td>
+                            </tr>
+                            <tr>
+                                <td><a href="{% url 'pekka:TDT4145_q' %}">TDT4145</a></td>
+                                <td>Datamodellering og databasesystemer</td>
+                            </tr>
+                            <tr>
+                                <td><a href="{% url 'pekka:TDT4180_q' %}">TDT4180</a></td>
+                                <td>Menneske-maskin interaksjon</td>
+                            </tr>
+                            <tr>
+                                <td><a href="{% url 'pekka:TTM4100_q' %}">TTM4100</a></td>
+                                <td>Kommunikasjon - Tjenester og nett</td>
+                            </tr>
+                            <tr>
+                                <td><a href="{% url 'pekka:TDT4110_q' %}">TDT4110</a></td>
+                                <td>Informasjonsteknologi, grunnkurs</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-
-    <!-- If user searches and there are songs -->
-    {% if songs %}
-        <div class="row">
-            <div class="col-sm-12">
-                <h3>Songs</h3>
-            </div>
-            <div class="col-sm-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Fag Kode</th>
-                                    <th>Fag Navn</th>
-                                    <th>Favorite</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>TDT4140</td>
-                                    <td>PU</td>
-                                    <td>Ja/Nei</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-
+    </div>
 </div>
 {% endblock %}
