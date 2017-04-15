@@ -5,8 +5,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^music/', include('music.urls')),
-    url(r'^', include('music.urls')),
+    url(r'^pekka/', include('pekka.urls')),
+    url(r'^', include('pekka.urls')),
 ]
 
 if settings.DEBUG:
