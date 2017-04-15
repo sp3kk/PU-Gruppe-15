@@ -3,7 +3,6 @@ from django.db import models
 import datetime
 from django.template.defaultfilters import slugify
 
-
 #hver gang man endrer her HUSK!!!!
 #husk: python manage.py makemigrations
 #python manage.py migrate
@@ -29,6 +28,17 @@ class Question(models.Model):
     def vote(self, author, val):
         QuestionVotes.qvote(question=self, user=author, val=val)
 
+    def getAuthorRating(self):
+        user_questions = Question.objects.filter(author=self.author)
+        user_answers = Answer.objects.filter(author=self.author)
+        question_ratings = 0
+        answer_ratings = 0
+        for q in user_questions:
+            question_ratings += q.get_score()
+        for ans in user_answers:
+            answer_ratings += ans.get_score()
+#        return 10
+        return question_ratings + answer_ratings
 
 class Answer(models.Model):
     author = models.ForeignKey(User, default=1)
@@ -52,6 +62,18 @@ class Answer(models.Model):
 
     def vote(self, author, val):
         AnswerVotes.ansvote(question=self, user=author, val=val)
+
+    def getAuthorRating(self):
+        user_questions = Question.objects.filter(author=self.author)
+        user_answers = Answer.objects.filter(author=self.author)
+        question_ratings = 0
+        answer_ratings = 0
+        for q in user_questions:
+            question_ratings += q.get_score()
+        for ans in user_answers:
+            answer_ratings += ans.get_score()
+#        return 10
+        return question_ratings + answer_ratings
 
 
 class QuestionVotes(models.Model):
