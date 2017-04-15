@@ -18,7 +18,7 @@
 
         {% for answer in answers|dictsortreversed:"get_score" %}
 
-            <p it style="font-size:12px">[{{answer.getAuthorRating}}] <i>{{answer.author}}'s answer</i></p>
+            <p it style="font-size:12px"><i>Answered by {{answer.author}}</i> [{{answer.getAuthorRating}}]</p>
     <a href="/{{answer.id}}/vote_answer/"> <b>[ {{answer.get_score}} ]</b></a>  &nbsp; {{ answer.answer_text }}
             <br>
             <br>
