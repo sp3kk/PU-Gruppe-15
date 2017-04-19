@@ -10,9 +10,9 @@
 <h1>  New Question</h1>
 
 <form role="form" action="" method="post">
-    {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Submit</button>
+    {% csrf_token %}
 </form>
 
 <div align = 'center' id="duplicate">

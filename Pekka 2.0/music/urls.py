@@ -32,6 +32,11 @@ urlpatterns = [
     url(r'^TTM4100_q/$', views.TTM4100_q),
 
     url(r'^TTM4100_b/$', views.TTM4100_b),
+    url(r'^TDT4110_b/$', views.TDT4110_b),
+    url(r'^TDT4140_b/$', views.TDT4140_b),
+    url(r'^TDT4145_b/$', views.TDT4145_b),
+    url(r'^TDT4180_b/$', views.TDT4180_b),
+
 
     url(r'^vote_answer/$', views.vote_answer, name='vote_answer'),
     url(r'^(?P<answer_id>[0-9]+)/vote_answer/$', views.vote_answer, name='vote_answer'),

@@ -8,9 +8,9 @@ from .models import *
 import datetime
 from django.template import RequestContext, loader
 from difflib import SequenceMatcher
-from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+
 
 AUDIO_FILE_TYPES = ['wav', 'mp3', 'ogg']
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
@@ -60,7 +60,7 @@ def addQuestion(request):
             question_content = QuestionForm.question_content.save()
             return redirect('/index/')
 
-    return render_to_response('Fagsider/questions.html', {'form': form}, context_type=RequestContext(request))
+    return render(request, template_name='Fagsider/questions.html', context={'form': form})
 
 
 def vote_question(request, question_id):
@@ -120,16 +120,40 @@ def vote_answer(request, answer_id):
 #-------------------------------------------------------------------------------------------------------------------------------------
 
 def TDT4140_a(request):
-    return render(request, 'Fagsider/TDT4140_a.html')
+    sub_code = 'TDT4140'
+    # connecter til databasen
+    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
+    context = {
+        'all_questions_with_sub_code': all_questions_with_sub_code,
+    }
+    return render(request, 'Fagsider/TDT4140_a.html', context=context)
 
 def TDT4110_a(request):
-    return render(request, 'Fagsider/TDT4110_a.html')
+    sub_code = 'TDT4110'
+    # connecter til databasen
+    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
+    context = {
+        'all_questions_with_sub_code': all_questions_with_sub_code,
+    }
+    return render(request, 'Fagsider/TDT4110_a.html', context=context)
 
 def TDT4145_a(request):
-    return render(request, 'Fagsider/TDT4145_a.html')
+    sub_code = 'TDT4145'
+    # connecter til databasen
+    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
+    context = {
+        'all_questions_with_sub_code': all_questions_with_sub_code,
+    }
+    return render(request, 'Fagsider/TDT4145_a.html', context=context)
 
 def TDT4180_a(request):
-    return render(request, 'Fagsider/TDT4180_a.html')
+    sub_code = 'TDT4180'
+    # connecter til databasen
+    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
+    context = {
+        'all_questions_with_sub_code': all_questions_with_sub_code,
+    }
+    return render(request, 'Fagsider/TDT4180_a.html', context=context)
 
 
 def TTM4100_a(request):
@@ -142,7 +166,6 @@ def TTM4100_a(request):
     return render(request, 'Fagsider/TTM4100_a.html', context=context)
 
 def TTM4100_b(request):
-    global c
     sub_code = 'TTM4100'
     all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
     similar_questions = []
@@ -163,30 +186,178 @@ def TTM4100_b(request):
 
     return render(request, 'Fagsider/TTM4100_b.html', context)
 
+def TDT4110_b(request):
+    sub_code = 'TDT4110'
+    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
+    similar_questions = []
+
+    a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
+    a_content = a.question_content
+
+    for questions in all_questions_with_sub_code:
+        b = questions.question_content
+
+        likhet = SequenceMatcher(None, a_content, b).ratio()
+        if likhet >= 0.5:
+            similar_questions.append(questions)
+
+    context = {
+        'similar_questions': similar_questions
+    }
+
+    return render(request, 'Fagsider/TDT4110_b.html', context)
+
+def TDT4140_b(request):
+    sub_code = 'TDT4140'
+    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
+    similar_questions = []
+
+    a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
+    a_content = a.question_content
+
+    for questions in all_questions_with_sub_code:
+        b = questions.question_content
+
+        likhet = SequenceMatcher(None, a_content, b).ratio()
+        if likhet >= 0.5:
+            similar_questions.append(questions)
+
+    context = {
+        'similar_questions': similar_questions
+    }
+
+    return render(request, 'Fagsider/TDT4140_b.html', context)
+
+def TDT4145_b(request):
+    sub_code = 'TDT4145'
+    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
+    similar_questions = []
+
+    a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
+    a_content = a.question_content
+
+    for questions in all_questions_with_sub_code:
+        b = questions.question_content
+
+        likhet = SequenceMatcher(None, a_content, b).ratio()
+        if likhet >= 0.5:
+            similar_questions.append(questions)
+
+    context = {
+        'similar_questions': similar_questions
+    }
+
+    return render(request, 'Fagsider/TDT4145_b.html', context)
+
+def TDT4180_b(request):
+    sub_code = 'TDT4180'
+    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
+    similar_questions = []
+
+    a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
+    a_content = a.question_content
+
+    for questions in all_questions_with_sub_code:
+        b = questions.question_content
+
+        likhet = SequenceMatcher(None, a_content, b).ratio()
+        if likhet >= 0.5:
+            similar_questions.append(questions)
+
+    context = {
+        'similar_questions': similar_questions
+    }
+
+    return render(request, 'Fagsider/TDT4180_b.html', context)
+
 
 def TDT4140_q(request):
     sub_code = 'TDT4140'
-    form_class = QuestionForm
-    return render(request, 'Fagsider/TDT4140_q.html',{
-    'form':form_class})
+    form = QuestionForm()
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+
+        if form.is_valid():
+            question = Question()
+            question.question_title = form.data['question_title']
+            question.question_content = form.data['question_content']
+            question.sub_code = sub_code
+            question.author = request.user
+            question.ask_time = datetime.datetime.now()
+            question.save()
+            return redirect("../../music/TDT4140_b")
+        """""
+        question.question_title= form.question_title.save_form_data()
+        question.question_content = form.question_content
+        return redirect('/music/')
+        """""
+    return render(request, 'Fagsider/TDT4140_q.html', {'form': form})
 
 def TDT4110_q(request):
     sub_code = 'TDT4110'
-    form_class = QuestionForm
-    return render(request, 'Fagsider/TDT4110_q.html',{
-    'form':form_class})
+    form = QuestionForm()
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+
+        if form.is_valid():
+            question = Question()
+            question.question_title = form.data['question_title']
+            question.question_content = form.data['question_content']
+            question.sub_code = sub_code
+            question.author = request.user
+            question.ask_time = datetime.datetime.now()
+            question.save()
+            return redirect("../../music/TDT4110_b")
+        """""
+        question.question_title= form.question_title.save_form_data()
+        question.question_content = form.question_content
+        return redirect('/music/')
+        """""
+    return render(request, 'Fagsider/TDT4110_q.html', {'form': form})
 
 def TDT4145_q(request):
     sub_code = 'TDT4145'
-    form_class = QuestionForm
-    return render(request, 'Fagsider/TDT4145_q.html',{
-    'form':form_class})
+    form = QuestionForm()
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+
+        if form.is_valid():
+            question = Question()
+            question.question_title = form.data['question_title']
+            question.question_content = form.data['question_content']
+            question.sub_code = sub_code
+            question.author = request.user
+            question.ask_time = datetime.datetime.now()
+            question.save()
+            return redirect("../../music/TDT4145_b")
+        """""
+        question.question_title= form.question_title.save_form_data()
+        question.question_content = form.question_content
+        return redirect('/music/')
+        """""
+    return render(request, 'Fagsider/TDT4145_q.html', {'form': form})
 
 def TDT4180_q(request):
     sub_code = 'TDT4180'
-    form_class = QuestionForm
-    return render(request, 'Fagsider/TDT4180_q.html',{
-    'form':form_class})
+    form = QuestionForm()
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+
+        if form.is_valid():
+            question = Question()
+            question.question_title = form.data['question_title']
+            question.question_content = form.data['question_content']
+            question.sub_code = sub_code
+            question.author = request.user
+            question.ask_time = datetime.datetime.now()
+            question.save()
+            return redirect("../../music/TDT4180_b")
+        """""
+        question.question_title= form.question_title.save_form_data()
+        question.question_content = form.question_content
+        return redirect('/music/')
+        """""
+    return render(request, 'Fagsider/TDT4180_q.html', {'form': form})
 
 def TTM4100_q(request):
     sub_code = 'TTM4100'

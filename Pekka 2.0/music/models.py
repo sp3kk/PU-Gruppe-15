@@ -15,7 +15,7 @@ class Question(models.Model):
     question_content = models.CharField(max_length=2000)
     is_answered = models.BooleanField(default=False)
     sub_code = models.CharField(max_length=10)
-    ask_time = models.DateTimeField()
+    ask_time = models.DateTimeField(default='2017-4-17T09:21:31+0000')
 
     def get_score(self):
         up = QuestionVotes.objects.filter(question=self, val=+1)
