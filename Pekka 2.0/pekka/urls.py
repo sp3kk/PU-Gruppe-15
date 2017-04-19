@@ -30,5 +30,9 @@ urlpatterns = [
     url(r'^TDT4180_q/$', views.TDT4180_q, name='TDT4180_q'),
     url(r'^TTM4100_q/$', views.TTM4100_q, name='TTM4100_q'),
 
-    url(r'^TTM4100_b/$', views.TTM4100_b, name='TTM4100_b')
+    url(r'^TTM4100_b/$', views.TTM4100_b),
+    url(r'^TDT4110_b/$', views.TDT4110_b),
+    url(r'^TDT4140_b/$', views.TDT4140_b),
+    url(r'^TDT4145_b/$', views.TDT4145_b),
+    url(r'^TDT4180_b/$', views.TDT4180_b)
 ]

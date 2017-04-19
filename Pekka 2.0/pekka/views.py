@@ -110,33 +110,52 @@ def vote_answer(request, answer_id):
 
 
 def TDT4140_a(request):
-    return render(request, 'courses/TDT4140_a.html')
-
+    sub_code = 'TDT4140'
+    # connecter til databasen
+    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
+    context = {
+        'all_questions_with_sub_code': all_questions_with_sub_code,
+    }
+    return render(request, 'courses/TDT4140_a.html', context=context)
 
 def TDT4110_a(request):
-    return render(request, 'courses/TDT4110_a.html')
-
+    sub_code = 'TDT4110'
+    # connecter til databasen
+    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
+    context = {
+        'all_questions_with_sub_code': all_questions_with_sub_code,
+    }
+    return render(request, 'courses/TDT4110_a.html', context=context)
 
 def TDT4145_a(request):
-    return render(request, 'courses/TDT4145_a.html')
-
+    sub_code = 'TDT4145'
+    # connecter til databasen
+    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
+    context = {
+        'all_questions_with_sub_code': all_questions_with_sub_code,
+    }
+    return render(request, 'courses/TDT4145_a.html', context=context)
 
 def TDT4180_a(request):
-    return render(request, 'courses/TDT4180_a.html')
+    sub_code = 'TDT4180'
+    # connecter til databasen
+    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
+    context = {
+        'all_questions_with_sub_code': all_questions_with_sub_code,
+    }
+    return render(request, 'courses/TDT4180_a.html', context=context)
 
 
 def TTM4100_a(request):
     sub_code = 'TTM4100'
     # connecter til databasen
-    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
+    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
     context = {
         'all_questions_with_sub_code': all_questions_with_sub_code,
     }
     return render(request, 'courses/TTM4100_a.html', context=context)
 
-
 def TTM4100_b(request):
-    # global c
     sub_code = 'TTM4100'
     all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
     similar_questions = []
@@ -148,45 +167,106 @@ def TTM4100_b(request):
         b = questions.question_content
 
         likhet = SequenceMatcher(None, a_content, b).ratio()
-        if likhet >= 0.5 and a_content != b:
+        if likhet >= 0.5:
             similar_questions.append(questions)
 
     context = {
-        'similar_questions': similar_questions,
-        'sub_code': sub_code
+        'similar_questions': similar_questions
     }
+
     return render(request, 'courses/TTM4100_b.html', context)
+
+def TDT4110_b(request):
+    sub_code = 'TDT4110'
+    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
+    similar_questions = []
+
+    a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
+    a_content = a.question_content
+
+    for questions in all_questions_with_sub_code:
+        b = questions.question_content
+
+        likhet = SequenceMatcher(None, a_content, b).ratio()
+        if likhet >= 0.5:
+            similar_questions.append(questions)
+
+    context = {
+        'similar_questions': similar_questions
+    }
+
+    return render(request, 'courses/TDT4110_b.html', context)
+
+def TDT4140_b(request):
+    sub_code = 'TDT4140'
+    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
+    similar_questions = []
+
+    a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
+    a_content = a.question_content
+
+    for questions in all_questions_with_sub_code:
+        b = questions.question_content
+
+        likhet = SequenceMatcher(None, a_content, b).ratio()
+        if likhet >= 0.5:
+            similar_questions.append(questions)
+
+    context = {
+        'similar_questions': similar_questions
+    }
+
+    return render(request, 'courses/TDT4140_b.html', context)
+
+def TDT4145_b(request):
+    sub_code = 'TDT4145'
+    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
+    similar_questions = []
+
+    a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
+    a_content = a.question_content
+
+    for questions in all_questions_with_sub_code:
+        b = questions.question_content
+
+        likhet = SequenceMatcher(None, a_content, b).ratio()
+        if likhet >= 0.5:
+            similar_questions.append(questions)
+
+    context = {
+        'similar_questions': similar_questions
+    }
+
+    return render(request, 'courses/TDT4145_b.html', context)
+
+def TDT4180_b(request):
+    sub_code = 'TDT4180'
+    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
+    similar_questions = []
+
+    a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
+    a_content = a.question_content
+
+    for questions in all_questions_with_sub_code:
+        b = questions.question_content
+
+        likhet = SequenceMatcher(None, a_content, b).ratio()
+        if likhet >= 0.5:
+            similar_questions.append(questions)
+
+    context = {
+        'similar_questions': similar_questions
+    }
+
+    return render(request, 'courses/TDT4180_b.html', context)
 
 
 def TDT4140_q(request):
     sub_code = 'TDT4140'
-    form_class = QuestionForm
-    return render(request, 'courses/TDT4140_q.html', {'form': form_class})
-
-def TDT4110_q(request):
-    sub_code = 'TDT4110'
-    form_class = QuestionForm
-    return render(request, 'courses/TDT4110_q.html', {'form': form_class})
-
-
-def TDT4145_q(request):
-    sub_code = 'TDT4145'
-    form_class = QuestionForm
-    return render(request, 'courses/TDT4145_q.html', {'form': form_class})
-
-
-def TDT4180_q(request):
-    sub_code = 'TDT4180'
-    form_class = QuestionForm
-    return render(request, 'courses/TDT4180_q.html', {'form': form_class})
-
-
-def TTM4100_q(request):
-    sub_code = 'TTM4100'
     form = QuestionForm()
-
     if request.method == 'POST':
         form = QuestionForm(request.POST)
+
         if form.is_valid():
             question = Question()
             question.question_title = form.data['question_title']
@@ -195,9 +275,101 @@ def TTM4100_q(request):
             question.author = request.user
             question.ask_time = datetime.datetime.now()
             question.save()
-            return redirect("../../pekka/TTM4100_b")
-    return render(request, 'courses/TTM4100_q.html', {'form': form})
+            return redirect("../../TDT4140_b")
+        """""
+        question.question_title= form.question_title.save_form_data()
+        question.question_content = form.question_content
+        return redirect('/music/')
+        """""
+    return render(request, 'courses/TDT4140_q.html', {'form': form})
 
+def TDT4110_q(request):
+    sub_code = 'TDT4110'
+    form = QuestionForm()
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+
+        if form.is_valid():
+            question = Question()
+            question.question_title = form.data['question_title']
+            question.question_content = form.data['question_content']
+            question.sub_code = sub_code
+            question.author = request.user
+            question.ask_time = datetime.datetime.now()
+            question.save()
+            return redirect("../../TDT4110_b")
+        """""
+        question.question_title= form.question_title.save_form_data()
+        question.question_content = form.question_content
+        return redirect('/music/')
+        """""
+    return render(request, 'courses/TDT4110_q.html', {'form': form})
+
+def TDT4145_q(request):
+    sub_code = 'TDT4145'
+    form = QuestionForm()
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+
+        if form.is_valid():
+            question = Question()
+            question.question_title = form.data['question_title']
+            question.question_content = form.data['question_content']
+            question.sub_code = sub_code
+            question.author = request.user
+            question.ask_time = datetime.datetime.now()
+            question.save()
+            return redirect("../../TDT4145_b")
+        """""
+        question.question_title= form.question_title.save_form_data()
+        question.question_content = form.question_content
+        return redirect('/music/')
+        """""
+    return render(request, 'courses/TDT4145_q.html', {'form': form})
+
+def TDT4180_q(request):
+    sub_code = 'TDT4180'
+    form = QuestionForm()
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+
+        if form.is_valid():
+            question = Question()
+            question.question_title = form.data['question_title']
+            question.question_content = form.data['question_content']
+            question.sub_code = sub_code
+            question.author = request.user
+            question.ask_time = datetime.datetime.now()
+            question.save()
+            return redirect("../../TDT4180_b")
+        """""
+        question.question_title= form.question_title.save_form_data()
+        question.question_content = form.question_content
+        return redirect('/music/')
+        """""
+    return render(request, 'courses/TDT4180_q.html', {'form': form})
+
+def TTM4100_q(request):
+    sub_code = 'TTM4100'
+    form = QuestionForm()
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+
+        if form.is_valid():
+            question = Question()
+            question.question_title = form.data['question_title']
+            question.question_content = form.data['question_content']
+            question.sub_code = sub_code
+            question.author = request.user
+            question.ask_time = datetime.datetime.now()
+            question.save()
+            return redirect("../../TTM4100_b")
+        """""
+        question.question_title= form.question_title.save_form_data()
+        question.question_content = form.question_content
+        return redirect('/music/')
+        """""
+    return render(request, 'courses/TTM4100_q.html', {'form': form})
 
 def about(request):
     if not request.user.is_authenticated():

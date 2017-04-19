@@ -1,5 +1,5 @@
 [run]
 include =
-        music/views.py
-        music/models.py
+        pekka/views.py
+        pekka/models.py
 

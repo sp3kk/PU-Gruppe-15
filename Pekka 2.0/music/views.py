@@ -268,7 +268,7 @@ def TDT4180_b(request):
         'similar_questions': similar_questions
     }
 
-    return render(request, 'Fagsider/TDT4180_b.html', context)
+    return render(request, 'Fagsider/../pekka/templates/courses/TDT4180_b.html', context)
 
 
 def TDT4140_q(request):
