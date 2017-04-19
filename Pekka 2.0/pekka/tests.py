@@ -65,15 +65,19 @@ class Test_Views(TestCase):
     def test_TTM4100_q(self):
         self.assertEqual(c.get('/TTM4100_q/').status_code, 200)
 
+    def test_TDT4110_b(self):
+        self.assertEqual(c.get('/TDT4110_b/').status_code, 200)
+
+    def test_TDT4140_b(self):
+        self.assertEqual(c.get('/TDT4140_b/').status_code, 200)
+
+    def test_TDT4145_b(self):
+        self.assertEqual(c.get('/TDT4145_b/').status_code, 200)
+
+    def test_TDT4180_b(self):
+        self.assertEqual(c.get('/TDT4180_b/').status_code, 200)
+
     def test_TTM4100_b(self):
-        user = get_user_model().objects.create_user('test', '1234')
-        c.login(username='test', password='1234')
-        question = models.Question(author=user, question_content='her er ett spørsmål', question_title='Tittelen')
-        question.save()
-        a = models.Question(author=user, question_content='her er ett spørsmål', question_title='Tittelen2')
-        a_content = a.question_content
-        a.save()
-        self.assertEqual(question.question_content, a_content)
         self.assertEqual(c.get('/TTM4100_b/').status_code, 200)
 
 

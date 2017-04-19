@@ -160,8 +160,11 @@ def TTM4100_b(request):
     all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
     similar_questions = []
 
-    a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
-    a_content = a.question_content
+    try:
+        a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
+        a_content = a.question_content
+    except Question.DoesNotExist:
+        a = None
 
     for questions in all_questions_with_sub_code:
         b = questions.question_content
@@ -181,8 +184,11 @@ def TDT4110_b(request):
     all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
     similar_questions = []
 
-    a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
-    a_content = a.question_content
+    try:
+        a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
+        a_content = a.question_content
+    except Question.DoesNotExist:
+        a = None
 
     for questions in all_questions_with_sub_code:
         b = questions.question_content
@@ -202,8 +208,11 @@ def TDT4140_b(request):
     all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
     similar_questions = []
 
-    a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
-    a_content = a.question_content
+    try:
+        a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
+        a_content = a.question_content
+    except Question.DoesNotExist:
+        a = None
 
     for questions in all_questions_with_sub_code:
         b = questions.question_content
@@ -223,8 +232,11 @@ def TDT4145_b(request):
     all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
     similar_questions = []
 
-    a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
-    a_content = a.question_content
+    try:
+        a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
+        a_content = a.question_content
+    except Question.DoesNotExist:
+        a = None
 
     for questions in all_questions_with_sub_code:
         b = questions.question_content
@@ -244,8 +256,11 @@ def TDT4180_b(request):
     all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
     similar_questions = []
 
-    a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
-    a_content = a.question_content
+    try:
+        a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
+        a_content = a.question_content
+    except Question.DoesNotExist:
+        a = None
 
     for questions in all_questions_with_sub_code:
         b = questions.question_content
