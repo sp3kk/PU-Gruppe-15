@@ -40,6 +40,30 @@ class Test_Views(TestCase):
     def test_about(self):
         self.assertEqual(c.get('/pekka/about/').status_code, 200)
 
+    def test_ask(self):
+        self.assertEqual(c.get('/').status_code, 200)
+        user = get_user_model().objects.create_user('test', '1234')
+        c.login(username='test', password='1234')
+        self.assertEqual(c.get('/pekka/login_user/').status_code, 200)
+
+    def test_logout_user(self):
+        c.login(username='test', password='1234')
+        c.logout()
+        self.assertEqual(c.get('/pekka/logout_user/').status_code, 200)
+
+    def test_login_user(self):
+        c.login(username='test', password='1234')
+        self.assertEqual(c.get('/pekka/login_user/').status_code, 200)
+        c.logout()
+        self.assertEqual(c.get('/pekka/logout_user/').status_code, 200)
+
+    def test_register(self):
+        c.login(username='test', password='1234')
+        self.assertEqual(c.get('/pekka/login_user/').status_code, 200)
+        c.logout()
+        self.assertEqual(c.get('/pekka/logout_user/').status_code, 200)
+
+
     def test_TDT4110_a(self):
         self.assertEqual(c.get('/pekka/TDT4110_a/').status_code, 200)
     def test_TDT4110_q(self):
@@ -47,6 +71,7 @@ class Test_Views(TestCase):
 
     def test_TDT4140_a(self):
         self.assertEqual(c.get('/pekka/TDT4140_a/').status_code, 200)
+
     def test_TDT4140_q(self):
         self.assertEqual(c.get('/TDT4140_q/').status_code, 200)
 
