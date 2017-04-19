@@ -1,0 +1,51 @@
+{% extends 'html_pages/base.html' %}
+{% block title %}Answer{% endblock %}
+{% block answer_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid answer-container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Find your subject's code and answer questions to help your classmates out!</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Emnekode</th>
+                                <th>Emnenavn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="{% url 'pekka:TDT4140_a' %}">TDT4140</a></td>
+                                <td>Programvareutvikling</td>
+                            </tr>
+                            <tr>
+                                <td><a href="{% url 'pekka:TDT4145_a' %}">TDT4145</a></td>
+                                <td>Datamodellering og databasesystemer</td>
+                            </tr>
+                            <tr>
+                                <td><a href="{% url 'pekka:TDT4180_a' %}">TDT4180</a></td>
+                                <td>Menneske-maskin interaksjon</td>
+                            </tr>
+                            <tr>
+                                <td><a href="{% url 'pekka:TTM4100_a' %}">TTM4100</a></td>
+                                <td>Kommunikasjon - Tjenester og nett</td>
+                            </tr>
+                            <tr>
+                                <td><a href="{% url 'pekka:TDT4110_a' %}">TDT4110</a></td>
+                                <td>Informasjonsteknologi, grunnkurs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
