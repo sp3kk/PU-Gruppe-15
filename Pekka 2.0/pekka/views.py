@@ -118,6 +118,7 @@ def TDT4140_a(request):
     }
     return render(request, 'courses/TDT4140_a.html', context=context)
 
+
 def TDT4110_a(request):
     sub_code = 'TDT4110'
     # connecter til databasen
@@ -127,6 +128,7 @@ def TDT4110_a(request):
     }
     return render(request, 'courses/TDT4110_a.html', context=context)
 
+
 def TDT4145_a(request):
     sub_code = 'TDT4145'
     # connecter til databasen
@@ -135,6 +137,7 @@ def TDT4145_a(request):
         'all_questions_with_sub_code': all_questions_with_sub_code,
     }
     return render(request, 'courses/TDT4145_a.html', context=context)
+
 
 def TDT4180_a(request):
     sub_code = 'TDT4180'
@@ -154,6 +157,7 @@ def TTM4100_a(request):
         'all_questions_with_sub_code': all_questions_with_sub_code,
     }
     return render(request, 'courses/TTM4100_a.html', context=context)
+
 
 def TTM4100_b(request):
     sub_code = 'TTM4100'
@@ -179,6 +183,7 @@ def TTM4100_b(request):
 
     return render(request, 'courses/TTM4100_b.html', context)
 
+
 def TDT4110_b(request):
     sub_code = 'TDT4110'
     all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
@@ -202,6 +207,7 @@ def TDT4110_b(request):
     }
 
     return render(request, 'courses/TDT4110_b.html', context)
+
 
 def TDT4140_b(request):
     sub_code = 'TDT4140'
@@ -227,6 +233,7 @@ def TDT4140_b(request):
 
     return render(request, 'courses/TDT4140_b.html', context)
 
+
 def TDT4145_b(request):
     sub_code = 'TDT4145'
     all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
@@ -250,6 +257,7 @@ def TDT4145_b(request):
     }
 
     return render(request, 'courses/TDT4145_b.html', context)
+
 
 def TDT4180_b(request):
     sub_code = 'TDT4180'
@@ -291,12 +299,8 @@ def TDT4140_q(request):
             question.ask_time = datetime.datetime.now()
             question.save()
             return redirect("../../TDT4140_b")
-        """""
-        question.question_title= form.question_title.save_form_data()
-        question.question_content = form.question_content
-        return redirect('/music/')
-        """""
     return render(request, 'courses/TDT4140_q.html', {'form': form})
+
 
 def TDT4110_q(request):
     sub_code = 'TDT4110'
@@ -313,12 +317,8 @@ def TDT4110_q(request):
             question.ask_time = datetime.datetime.now()
             question.save()
             return redirect("../../TDT4110_b")
-        """""
-        question.question_title= form.question_title.save_form_data()
-        question.question_content = form.question_content
-        return redirect('/music/')
-        """""
     return render(request, 'courses/TDT4110_q.html', {'form': form})
+
 
 def TDT4145_q(request):
     sub_code = 'TDT4145'
@@ -335,12 +335,8 @@ def TDT4145_q(request):
             question.ask_time = datetime.datetime.now()
             question.save()
             return redirect("../../TDT4145_b")
-        """""
-        question.question_title= form.question_title.save_form_data()
-        question.question_content = form.question_content
-        return redirect('/music/')
-        """""
     return render(request, 'courses/TDT4145_q.html', {'form': form})
+
 
 def TDT4180_q(request):
     sub_code = 'TDT4180'
@@ -357,12 +353,8 @@ def TDT4180_q(request):
             question.ask_time = datetime.datetime.now()
             question.save()
             return redirect("../../TDT4180_b")
-        """""
-        question.question_title= form.question_title.save_form_data()
-        question.question_content = form.question_content
-        return redirect('/music/')
-        """""
     return render(request, 'courses/TDT4180_q.html', {'form': form})
+
 
 def TTM4100_q(request):
     sub_code = 'TTM4100'
@@ -379,30 +371,28 @@ def TTM4100_q(request):
             question.ask_time = datetime.datetime.now()
             question.save()
             return redirect("../../TTM4100_b")
-        """""
-        question.question_title= form.question_title.save_form_data()
-        question.question_content = form.question_content
-        return redirect('/music/')
-        """""
     return render(request, 'courses/TTM4100_q.html', {'form': form})
 
+
 def about(request):
+    form = SignInForm(request.POST or None)
     if not request.user.is_authenticated():
-        return render(request, 'html_pages/login.html')
+        return render(request, 'html_pages/login.html', {"form": form})
     else:
         return render(request, 'html_pages/about.html')
 
 
 def ask(request):
+    form = SignInForm(request.POST or None)
     if not request.user.is_authenticated():
-        return render(request, 'html_pages/login.html')
+        return render(request, 'html_pages/login.html', {"form": form})
     else:
         return render(request, 'html_pages/ask.html')
 
 
 def logout_user(request):
     logout(request)
-    form = UserForm(request.POST or None)
+    form = SignInForm(request.POST or None)
     context = {
         "form": form,
     }
@@ -410,6 +400,7 @@ def logout_user(request):
 
 
 def login_user(request):
+    form = SignInForm(request.POST or None)
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -419,14 +410,17 @@ def login_user(request):
                 login(request, user)
                 return render(request, 'html_pages/ask.html')
             else:
-                return render(request, 'html_pages/login.html', {'error_message': 'Your account has been disabled'})
+                return render(request, 'html_pages/login.html', {'error_message': 'Your account has been disabled',
+                                                                 'form': form})
         else:
-            return render(request, 'html_pages/login.html', {'error_message': 'Invalid login'})
-    return render(request, 'html_pages/login.html')
+            return render(request, 'html_pages/login.html', {'error_message': 'Invalid login',
+                                                             'form': form})
+    return render(request, 'html_pages/login.html', {'form': form})
 
 
 def register(request):
     form = UserForm(request.POST or None)
+    signinform = SignInForm(request.POST or None)
     if form.is_valid():
         user = form.save(commit=False)
         username = form.cleaned_data['username']
@@ -437,7 +431,7 @@ def register(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return render(request, 'html_pages/login.html')
+                return render(request, 'html_pages/login.html', {"form": signinform})
     context = {
         "form": form,
     }
@@ -445,7 +439,8 @@ def register(request):
 
 
 def answer(request):
+    form = SignInForm(request.POST or None)
     if not request.user.is_authenticated():
-        return render(request, 'html_pages/login.html')
+        return render(request, 'html_pages/login.html', {"form": form})
     else:
         return render(request, 'html_pages/answer.html')

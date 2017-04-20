@@ -3,19 +3,66 @@
 {% if form_is_saved and previous_page %}<meta http-equiv="refresh" content="0; url={{ previous_page }}" />{% endif %}
 
 {% block body %}
-    <h3>Vote on this question</h3>
-    <h4>Current score: {{score}}</h4>
+<div class="container-fluid centerpanel">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><b>Vote on this question</b></h3>
+                </div>
+                <div class="panel-body">
+                    <h4>Score <span class="badge titlebadge" id="titlebadge">{{ score }}</span></h4>
+                    <div class="well">
+                        <div id="title">{{ question_title }}</div>
+                        {{ question_content }}
+                    </div>
+                    <form role="form" action="" method="post">
+                        {% csrf_token %}
+                        <div class="btn-group form-group" data-toggle="buttons">
+                            {% for radio in form.val %}
+                                <label class="btn btn-default" id="radiobuttons">
+                                    <span id="glyph" class="glyphicon glyphicon-thumbs-up" aria-hidden="true">
+                                    </span>&nbsp;{{ radio }}
+                                </label>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success center-block">Submit</button>
+                        </div>
+                    </form>
+                    <a href="javascript:history.go(-1)"><button class="btn btn-default center-block">Back to question</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.addEventListener('load', function() {
+        var q_score = {{ score }};
+        var q_elmt = document.getElementById('titlebadge');
 
-    <a href="javascript:history.go(-1)" class="btn btn-default">Back to question</a>
+        if (q_score < 0) {
+            q_elmt.style.backgroundColor = "#D9534F";
+        }
+        else if (q_score > 0) {
+            q_elmt.style.backgroundColor = "#5CB85C";
+        }
+        else {
+            q_elmt.style.backgroundColor = "#777777";
+        }
+        // glyphicons på radiobuttons
+        var i = 0;
+        {% for radio in form.val %}
+            document.getElementById('glyph').id = 'glyph' + i;
 
-    <h2>{{question_title}}</h2>
-    <br>
-    {{question_content}}
-    <br>
-    <br>
-    <form role="form" action="" method="post">
-        {{ form.as_p }}
-        <a href="../"><button type="submit">Submit</button></a>
-        {% csrf_token %}
-    </form>
+            if (i == 1) {
+                document.getElementById('glyph' + i).className = 'glyphicon glyphicon-remove';
+            }
+            else if (i == 2) {
+                document.getElementById('glyph' + i).className = 'glyphicon glyphicon-thumbs-down';
+            }
+            i += 1;
+        {% endfor %}
+    });
+</script>
 {% endblock %}
