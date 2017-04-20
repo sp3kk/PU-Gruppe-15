@@ -27,7 +27,7 @@ class AnswerForm(forms.Form):
 
 class QuestionVotesForm(forms.ModelForm):
     CHOICES = (('+1', 'Upvote'), ('0', 'Remove vote'), ('-1', 'Downvote'))
-#    CHOICES = ('+1', '0', '-1')
+#   CHOICES = ('+1', '0', '-1')
     val = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(), help_text="Don't forget to submit!")
 
     class Meta:
