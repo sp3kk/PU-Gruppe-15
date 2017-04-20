@@ -8,8 +8,10 @@ from .models import *
 
 class QuestionForm(forms.Form):
 
-    question_title = forms.CharField(help_text="")
-    question_content = forms.CharField(widget=forms.Textarea(attrs={'cols': 30, 'rows': 10}), help_text="")
+    question_title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), help_text="")
+    question_content = forms.CharField(widget=forms.Textarea(attrs={'cols': 30,
+                                                                    'rows': 10,
+                                                                    'class': 'form-control'}), help_text="")
 
     class Meta:
         model = Question
@@ -18,17 +20,22 @@ class QuestionForm(forms.Form):
 
 class AnswerForm(forms.Form):
 
-    answer_text = forms.CharField(help_text="")
+    answer_text = forms.CharField(widget=forms.Textarea(attrs={'cols': 30,
+                                                               'rows': 10,
+                                                               'class': 'form-control'}), help_text="")
 
     class Meta:
-        model = Question
+        model = Answer
         fields = 'answer_text'
 
 
 class QuestionVotesForm(forms.ModelForm):
-    CHOICES = (('+1', 'Upvote'), ('0', 'Remove vote'), ('-1', 'Downvote'))
+    UP = '+1'
+    REMOVE = '0'
+    DOWN = '-1'
+    CHOICES = ((UP, 'Upvote'), (REMOVE, 'Remove vote'), (DOWN, 'Downvote'))
 #    CHOICES = ('+1', '0', '-1')
-    val = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(), help_text="Don't forget to submit!")
+    val = forms.ChoiceField(label="", choices=CHOICES, widget=forms.RadioSelect(), help_text="Don't forget to submit!")
 
     class Meta:
         model = QuestionVotes
@@ -38,7 +45,7 @@ class QuestionVotesForm(forms.ModelForm):
 class AnswerVotesForm(forms.ModelForm):
     CHOICES = (('+1', 'Upvote'), ('0', 'Remove vote'), ('-1', 'Downvote'))
     #    CHOICES = ('+1', '0', '-1')
-    val = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(), help_text="Don't forget to submit!")
+    val = forms.ChoiceField(label="", choices=CHOICES, widget=forms.RadioSelect(), help_text="Don't forget to submit!")
 
     class Meta:
         model = AnswerVotes
@@ -46,8 +53,21 @@ class AnswerVotesForm(forms.ModelForm):
 
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
+
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}), help_text="")
+    email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control'}), help_text="")
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}), help_text="")
 
     class Meta:
         model = User
         fields = ['username', 'email', 'password']
+
+
+class SignInForm(forms.ModelForm):
+
+    username = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control'}), help_text="")
+    password = forms.CharField(max_length=30, widget=forms.PasswordInput(attrs={'class': 'form-control'}), help_text="")
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
