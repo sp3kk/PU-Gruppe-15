@@ -18,129 +18,71 @@ ul.errorlist > li {
     font-family: 'Satisfy', cursive;
 }
 
-.glyphicon-star {
-    color: #CCCCCC;
+/* title for questions in wells */
+#title {
+    text-decoration: underline;
+}
+
+/* voting score in tables */
+.tablebadge {
+    font-size: 14px;
+}
+
+/* voting score in titles */
+.titlebadge {
     font-size: 16px;
 }
 
-.glyphicon-star.active {
-    color: #FDB230;
+/* voting score in answers */
+.answerbadge {
+    font-size: 14px;
 }
 
-h1 { color: #222; font-family: 'Satisfy', cursive; font-size: 130px;
-    font-weight: normal; line-height: 48px; margin-top:80px; text-align: center;
-    text-shadow: 0px 2px 4px #fff; margin-bottom:80px; }
-
-label #id_question_title{
-
+/* voting score in answered by */
+.answerbybadge {
+    font-size: 9px;
 }
 
-#duplicate{
-    background-color: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
-    padding-left: 20px;
-    padding-right: 20px;
-
-    margin-left: 40%;
-    margin-top: -367px;
-    margin-right: 3%;
-
+/* hover in tables */
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #cccfd1;
+    text-decoration-line: underline;
 }
 
-button{
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    margin-left: 28.5%;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+.centerpanel {
+    right: 50%;
+    transform: translate(50%);
+    position: absolute;
 }
 
-input[type=text] {
-    width: 30%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 3px solid #ccc;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    outline: none;
+/* answers more compressed */
+.para {
+    margin-bottom: 0;
 }
 
-input[type=text]:focus {
-    border: 3px solid #555;
+h4 {
+    margin-top: 0px;
 }
 
-input[type=password]{
-    width: 30%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 3px solid #ccc;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    outline: none;
+a:hover {
+  text-decoration: none;
 }
 
-input[type=password]:focus {
-    border: 3px solid #555;
+/* form labels placement */
+.control-label {
+    padding-left: 16px;
 }
 
-input[type=email]{
-    width: 30%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 3px solid #ccc;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    outline: none;
+/* size radiobuttons */
+#radiobuttons {
+    padding-bottom: 3px;
 }
 
-input[type=email]:focus {
-    border: 3px solid #555;
+/* bootstrap form */
+.form-control {
+    width: 100%;
 }
 
-textarea {
-    width: 30%;
-    height: 35%;
-    padding: 12px 20px;
-    margin-left: -27px;
-    box-sizing: border-box;
-    border: 3px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    outline: none;
+.form-horizontal {
+    padding-left: 0px;
 }
-
-textarea:focus {
-    border: 3px solid #555;
-    margin-left: -27px;
-}
-
- ol {
-   list-style: none;
- }
- li {
-   counter-increment: item;
-   margin-bottom: 5px;
- }
- li:before {
-   margin-right: 10px;
-   content: counter(item);
-   background: green;
-   border-radius: 100%;
-   color: white;
-   width: 1.2em;
-   text-align: center;
-   display: inline-block;
- }
-  div li:before {
-  background: none;
-      content: none;
- }

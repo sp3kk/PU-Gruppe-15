@@ -101,7 +101,6 @@ def vote_answer(request, answer_id):
                 answ.save()
             return HttpResponseRedirect('/' + str(answer.question.id))
     return render(request, template_name='html_pages/vote_answer.html', context={
-            'question': answer.question,
             'answer': answer,
             'score': current_score,
             'form': form
@@ -215,7 +214,7 @@ def ask(request):
 
 def logout_user(request):
     logout(request)
-    form = UserForm(request.POST or None)
+    form = SignInForm(request.POST or None)
     context = {
         "form": form,
     }
@@ -223,6 +222,7 @@ def logout_user(request):
 
 
 def login_user(request):
+    form = SignInForm(request.POST or None)
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -232,14 +232,17 @@ def login_user(request):
                 login(request, user)
                 return render(request, 'html_pages/ask.html')
             else:
-                return render(request, 'html_pages/login.html', {'error_message': 'Your account has been disabled'})
+                return render(request, 'html_pages/login.html', {'error_message': 'Your account has been disabled',
+                                                                 'form': form})
         else:
-            return render(request, 'html_pages/login.html', {'error_message': 'Invalid login'})
-    return render(request, 'html_pages/login.html')
+            return render(request, 'html_pages/login.html', {'error_message': 'Invalid login',
+                                                             'form': form})
+    return render(request, 'html_pages/login.html', {'form': form})
 
 
 def register(request):
     form = UserForm(request.POST or None)
+    signinform = SignInForm(request.POST or None)
     if form.is_valid():
         user = form.save(commit=False)
         username = form.cleaned_data['username']
@@ -250,7 +253,7 @@ def register(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return render(request, 'html_pages/login.html')
+                return render(request, 'html_pages/login.html', {"form": signinform})
     context = {
         "form": form,
     }
