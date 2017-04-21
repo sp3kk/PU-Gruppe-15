@@ -20,7 +20,7 @@
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
     <option name="TEMPLATE_FOLDERS">
       <list>
-        <option value="$MODULE_DIR$/Pekka 2.0/music/templates" />
+        <option value="$MODULE_DIR$/Pekka 2.0/pekka/templates" />
       </list>
     </option>
   </component>

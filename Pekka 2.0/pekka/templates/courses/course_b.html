@@ -1,6 +1,6 @@
 {% extends 'html_pages/base.html' %}
 
-{% block title %}TTM4100{% endblock %}
+{% block title %}{{ sub_code }}{% endblock %}
 
 {% block body %}
 <div class="container-fluid">
@@ -15,7 +15,7 @@
                         <table class="table table-striped table-hover">
                             <thead>
                             <tr>
-                                <th class="col-sm-1">#</th>
+                                <th class="col-sm-1">ID</th>
                                 <th class="col-sm-3">Question title</th>
                                 <th class="col-sm">Score</th>
                             </tr>
@@ -37,7 +37,7 @@
                     <div class="alert alert-danger" role="alert" align="center">
                         <p><strong>There are no questions asked on your specific topic in this subject yet</strong></p>
                     </div>
-                    <a href="/{{ sub_code }}_a"><button class="btn btn-default center-block">See other questions in this subject</button></a>
+                    <a href="../{{ sub_code }}_a"><button class="btn btn-default center-block">See other questions in this subject</button></a>
                 </div>
             {% endif %}
         </div>

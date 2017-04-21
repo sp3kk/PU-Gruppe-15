@@ -109,58 +109,17 @@ def vote_answer(request, answer_id):
 # ------------------------------------------------------------------------------------------------------------------
 
 
-def TDT4140_a(request):
-    sub_code = 'TDT4140'
+def course_a(request, sub_code):
     # connecter til databasen
-    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
+    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
     context = {
         'all_questions_with_sub_code': all_questions_with_sub_code,
+        'sub_code': sub_code
     }
-    return render(request, 'courses/TDT4140_a.html', context=context)
+    return render(request, 'courses/course_a.html', context=context)
 
 
-def TDT4110_a(request):
-    sub_code = 'TDT4110'
-    # connecter til databasen
-    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
-    context = {
-        'all_questions_with_sub_code': all_questions_with_sub_code,
-    }
-    return render(request, 'courses/TDT4110_a.html', context=context)
-
-
-def TDT4145_a(request):
-    sub_code = 'TDT4145'
-    # connecter til databasen
-    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
-    context = {
-        'all_questions_with_sub_code': all_questions_with_sub_code,
-    }
-    return render(request, 'courses/TDT4145_a.html', context=context)
-
-
-def TDT4180_a(request):
-    sub_code = 'TDT4180'
-    # connecter til databasen
-    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
-    context = {
-        'all_questions_with_sub_code': all_questions_with_sub_code,
-    }
-    return render(request, 'courses/TDT4180_a.html', context=context)
-
-
-def TTM4100_a(request):
-    sub_code = 'TTM4100'
-    # connecter til databasen
-    all_questions_with_sub_code = Question.objects.filter(sub_code = sub_code)
-    context = {
-        'all_questions_with_sub_code': all_questions_with_sub_code,
-    }
-    return render(request, 'courses/TTM4100_a.html', context=context)
-
-
-def TTM4100_b(request):
-    sub_code = 'TTM4100'
+def course_b(request, sub_code):
     all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
     similar_questions = []
 
@@ -177,115 +136,17 @@ def TTM4100_b(request):
         if likhet >= 0.5:
             similar_questions.append(questions)
 
-    context = {
-        'similar_questions': similar_questions
-    }
-
-    return render(request, 'courses/TTM4100_b.html', context)
-
-
-def TDT4110_b(request):
-    sub_code = 'TDT4110'
-    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
-    similar_questions = []
-
-    try:
-        a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
-        a_content = a.question_content
-    except Question.DoesNotExist:
-        a = None
-
-    for questions in all_questions_with_sub_code:
-        b = questions.question_content
-
-        likhet = SequenceMatcher(None, a_content, b).ratio()
-        if likhet >= 0.5:
-            similar_questions.append(questions)
+    similar_questions.pop()
 
     context = {
-        'similar_questions': similar_questions
+        'similar_questions': similar_questions,
+        'sub_code': sub_code
     }
 
-    return render(request, 'courses/TDT4110_b.html', context)
+    return render(request, 'courses/course_b.html', context)
 
 
-def TDT4140_b(request):
-    sub_code = 'TDT4140'
-    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
-    similar_questions = []
-
-    try:
-        a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
-        a_content = a.question_content
-    except Question.DoesNotExist:
-        a = None
-
-    for questions in all_questions_with_sub_code:
-        b = questions.question_content
-
-        likhet = SequenceMatcher(None, a_content, b).ratio()
-        if likhet >= 0.5:
-            similar_questions.append(questions)
-
-    context = {
-        'similar_questions': similar_questions
-    }
-
-    return render(request, 'courses/TDT4140_b.html', context)
-
-
-def TDT4145_b(request):
-    sub_code = 'TDT4145'
-    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
-    similar_questions = []
-
-    try:
-        a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
-        a_content = a.question_content
-    except Question.DoesNotExist:
-        a = None
-
-    for questions in all_questions_with_sub_code:
-        b = questions.question_content
-
-        likhet = SequenceMatcher(None, a_content, b).ratio()
-        if likhet >= 0.5:
-            similar_questions.append(questions)
-
-    context = {
-        'similar_questions': similar_questions
-    }
-
-    return render(request, 'courses/TDT4145_b.html', context)
-
-
-def TDT4180_b(request):
-    sub_code = 'TDT4180'
-    all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
-    similar_questions = []
-
-    try:
-        a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
-        a_content = a.question_content
-    except Question.DoesNotExist:
-        a = None
-
-    for questions in all_questions_with_sub_code:
-        b = questions.question_content
-
-        likhet = SequenceMatcher(None, a_content, b).ratio()
-        if likhet >= 0.5:
-            similar_questions.append(questions)
-
-    context = {
-        'similar_questions': similar_questions
-    }
-
-    return render(request, 'courses/TDT4180_b.html', context)
-
-
-def TDT4140_q(request):
-    sub_code = 'TDT4140'
+def course_q(request, sub_code):
     form = QuestionForm()
     if request.method == 'POST':
         form = QuestionForm(request.POST)
@@ -298,80 +159,13 @@ def TDT4140_q(request):
             question.author = request.user
             question.ask_time = datetime.datetime.now()
             question.save()
-            return redirect("../../TDT4140_b")
-    return render(request, 'courses/TDT4140_q.html', {'form': form})
+            return redirect("../../" + sub_code + "_b")
 
-
-def TDT4110_q(request):
-    sub_code = 'TDT4110'
-    form = QuestionForm()
-    if request.method == 'POST':
-        form = QuestionForm(request.POST)
-
-        if form.is_valid():
-            question = Question()
-            question.question_title = form.data['question_title']
-            question.question_content = form.data['question_content']
-            question.sub_code = sub_code
-            question.author = request.user
-            question.ask_time = datetime.datetime.now()
-            question.save()
-            return redirect("../../TDT4110_b")
-    return render(request, 'courses/TDT4110_q.html', {'form': form})
-
-
-def TDT4145_q(request):
-    sub_code = 'TDT4145'
-    form = QuestionForm()
-    if request.method == 'POST':
-        form = QuestionForm(request.POST)
-
-        if form.is_valid():
-            question = Question()
-            question.question_title = form.data['question_title']
-            question.question_content = form.data['question_content']
-            question.sub_code = sub_code
-            question.author = request.user
-            question.ask_time = datetime.datetime.now()
-            question.save()
-            return redirect("../../TDT4145_b")
-    return render(request, 'courses/TDT4145_q.html', {'form': form})
-
-
-def TDT4180_q(request):
-    sub_code = 'TDT4180'
-    form = QuestionForm()
-    if request.method == 'POST':
-        form = QuestionForm(request.POST)
-
-        if form.is_valid():
-            question = Question()
-            question.question_title = form.data['question_title']
-            question.question_content = form.data['question_content']
-            question.sub_code = sub_code
-            question.author = request.user
-            question.ask_time = datetime.datetime.now()
-            question.save()
-            return redirect("../../TDT4180_b")
-    return render(request, 'courses/TDT4180_q.html', {'form': form})
-
-
-def TTM4100_q(request):
-    sub_code = 'TTM4100'
-    form = QuestionForm()
-    if request.method == 'POST':
-        form = QuestionForm(request.POST)
-
-        if form.is_valid():
-            question = Question()
-            question.question_title = form.data['question_title']
-            question.question_content = form.data['question_content']
-            question.sub_code = sub_code
-            question.author = request.user
-            question.ask_time = datetime.datetime.now()
-            question.save()
-            return redirect("../../TTM4100_b")
-    return render(request, 'courses/TTM4100_q.html', {'form': form})
+    context = {
+        'form': form,
+        'sub_code': sub_code
+    }
+    return render(request, 'courses/course_q.html', context)
 
 
 def about(request):
