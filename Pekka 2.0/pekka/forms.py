@@ -30,18 +30,12 @@ class AnswerForm(forms.Form):
 
 
 class QuestionVotesForm(forms.ModelForm):
-<<<<<<< HEAD
-    CHOICES = (('+1', 'Upvote'), ('0', 'Remove vote'), ('-1', 'Downvote'))
-#   CHOICES = ('+1', '0', '-1')
-    val = forms.ChoiceField(choices=CHOICES, widget=forms.RadioSelect(), help_text="Don't forget to submit!")
-=======
     UP = '+1'
     REMOVE = '0'
     DOWN = '-1'
     CHOICES = ((UP, 'Upvote'), (REMOVE, 'Remove vote'), (DOWN, 'Downvote'))
-#    CHOICES = ('+1', '0', '-1')
+    #    CHOICES = ('+1', '0', '-1')
     val = forms.ChoiceField(label="", choices=CHOICES, widget=forms.RadioSelect(), help_text="Don't forget to submit!")
->>>>>>> bf91449004451ae48d76c051bfd01a1e2e1f4672
 
     class Meta:
         model = QuestionVotes

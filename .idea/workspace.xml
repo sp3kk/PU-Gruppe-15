@@ -2,36 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="563b48ed-940e-49a2-bb5e-59726543749e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pekka 2.0/music/migrations/0014_auto_20170412_1506.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pekka 2.0/music/templates/Fagsider/TDT4110_a.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pekka 2.0/music/templates/Fagsider/TDT4110_b.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pekka 2.0/music/templates/Fagsider/TDT4140_a.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pekka 2.0/music/templates/Fagsider/TDT4140_b.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pekka 2.0/music/templates/Fagsider/TDT4145_a.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pekka 2.0/music/templates/Fagsider/TDT4145_b.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pekka 2.0/music/templates/Fagsider/TDT4180_a.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pekka 2.0/music/templates/Fagsider/TDT4180_q.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pekka 2.0/music/urls.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Pekka 2.0/music/views.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/forms.py" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/static/elements/js/main.js" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/static/elements/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/static/elements/style.css" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/static/elements/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/courses/TTM4100_a.html" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/courses/TTM4100_a.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/courses/TTM4100_b.html" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/courses/TTM4100_b.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/courses/TTM4100_q.html" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/courses/TTM4100_q.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/about.html" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/about.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/answer.html" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/answer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/ask.html" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/ask.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/base.html" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/base_visitor.html" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/base_visitor.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/detail.html" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/form_template.html" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/form_template.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/login.html" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/register.html" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/register.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/vote_answer.html" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/vote_answer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/vote_question.html" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/vote_question.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pekka 2.0/pekka/views.py" afterPath="$PROJECT_DIR$/Pekka 2.0/pekka/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -46,11 +17,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="TTM4100_a.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TTM4100_a.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pekka 2.0/pekka/templates/courses/TTM4100_a.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="154">
-              <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+              <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Pekka 2.0/pekka/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="110">
+              <caret line="31" column="41" lean-forward="true" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -133,7 +114,6 @@
         <option value="$PROJECT_DIR$/Pekka 2.0/pekka/templates/courses/TDT4180_q.html" />
         <option value="$PROJECT_DIR$/Pekka 2.0/pekka/static/elements/js/main.js" />
         <option value="$PROJECT_DIR$/Pekka 2.0/pekka/static/elements/style.css" />
-        <option value="$PROJECT_DIR$/Pekka 2.0/pekka/forms.py" />
         <option value="$PROJECT_DIR$/Pekka 2.0/pekka/views.py" />
         <option value="$PROJECT_DIR$/Pekka 2.0/pekka/templates/courses/TTM4100_a.html" />
         <option value="$PROJECT_DIR$/Pekka 2.0/pekka/templates/courses/TTM4100_b.html" />
@@ -149,6 +129,7 @@
         <option value="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/register.html" />
         <option value="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/vote_answer.html" />
         <option value="$PROJECT_DIR$/Pekka 2.0/pekka/templates/html_pages/vote_question.html" />
+        <option value="$PROJECT_DIR$/Pekka 2.0/pekka/forms.py" />
       </list>
     </option>
   </component>
@@ -281,7 +262,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../w/PU-Gruppe-25" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.django.DjangoModulesConfigurable" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.eslint.eslintPackage" value="" />
@@ -576,27 +557,27 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1618" height="868" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20336787" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20660622" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.50238097" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32430556" sideWeight="0.49761903" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3314367" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24285714" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3385744" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917964" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33256084" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908458" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -649,13 +630,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Pekka 2.0/music/migrations/0014_remove_questionvotes_val.py" />
     <entry file="file://$PROJECT_DIR$/Pekka 2.0/music/migrations/0013_answervotes.py" />
-    <entry file="file://$PROJECT_DIR$/Pekka 2.0/music/templates/music/create_song.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="16" lean-forward="true" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Pekka 2.0/music/templates/music/create_song.html" />
     <entry file="file://$PROJECT_DIR$/Pekka 2.0/pekka/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -767,7 +742,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="638">
           <caret line="32" column="22" lean-forward="false" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -791,23 +765,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="13" column="23" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="13" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pekka 2.0/music/migrations/0014_auto_20170412_1506.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Pekka 2.0/music/migrations/0014_auto_20170412_1506.py" />
     <entry file="file://$PROJECT_DIR$/Pekka 2.0/pekka/static/elements/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="5" column="3" lean-forward="false" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -815,7 +780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1936">
           <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -823,7 +787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6634">
           <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -863,7 +826,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
           <caret line="54" column="7" lean-forward="false" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -871,7 +833,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="550">
           <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -895,15 +856,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="9" column="12" lean-forward="false" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Pekka 2.0/pekka/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="682">
-          <caret line="36" column="28" lean-forward="true" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -911,7 +863,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="616">
           <caret line="28" column="6" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -919,7 +870,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="28" column="6" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -951,7 +901,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
           <caret line="107" column="9" lean-forward="false" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -967,7 +916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1452">
           <caret line="66" column="9" lean-forward="false" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -990,7 +938,15 @@
     <entry file="file://$PROJECT_DIR$/Pekka 2.0/pekka/templates/courses/TTM4100_a.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
-          <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <caret line="7" column="5" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pekka 2.0/pekka/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="31" column="41" lean-forward="true" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
           <folding />
         </state>
       </provider>
