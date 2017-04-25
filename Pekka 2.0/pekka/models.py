@@ -78,7 +78,7 @@ class Answer(models.Model):
 
 
 class QuestionVotes(models.Model):
-    question = models.ForeignKey(Question)
+    question = models.ForeignKey(Question,  on_delete=models.CASCADE)
     val = models.IntegerField(default=0)
     user = models.ForeignKey(User)
 
@@ -99,13 +99,13 @@ class QuestionVotes(models.Model):
 
 
 class AnswerVotes(models.Model):
-    ans = models.ForeignKey(Answer)
+    ans = models.ForeignKey(Answer,  on_delete=models.CASCADE)
     val = models.IntegerField(default=0)
     user = models.ForeignKey(User)
 
     def __str__(self):
         return 'user ' + str(self.user) + ' gave ' + str(self.val) \
-               + ' points to ans: \' ' + str(self.question.question_title) + '\''
+               + ' points to ans: \' ' + str(self.ans.answer_text) + '\''
 
     @staticmethod
     def ansvote(answer, user, val):
