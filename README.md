@@ -33,7 +33,7 @@ To view the application, open your preferred web browser and access the server
 
 Requirements: the project folder itself, python3.5 (or newer), and pip.
 
-Install coverage.py by entering --> pip install coverage
+In the terminal, install coverage.py by entering --> pip install coverage
 
 In the terminal, enter the project folder \%some_folder%\PU-Gruppe-25\
 
