@@ -129,15 +129,21 @@ def course_b(request, sub_code):
     except Question.DoesNotExist:
         a = None
 
+    count = 0
     for questions in all_questions_with_sub_code:
         b = questions.question_content
 
         likhet = SequenceMatcher(None, a_content, b).ratio()
+
         if likhet >= 0.5:
             similar_questions.append(questions)
+            count += 1
 
     if similar_questions != []:
         similar_questions.pop()
+
+    if count > 1:
+        Question.objects.filter(sub_code=sub_code).latest('ask_time').delete()
 
     context = {
         'similar_questions': similar_questions,
