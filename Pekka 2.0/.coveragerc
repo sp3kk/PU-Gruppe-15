@@ -2,4 +2,7 @@
 include =
         pekka/views.py
         pekka/models.py
+        pekka/forms.py
+        pekka/urls.py
+        website/urls.py
 

@@ -53,7 +53,7 @@ def detail(request, question_id):
 def vote_question(request, question_id):
     question = Question.objects.get(pk=question_id)
     form = QuestionVotesForm()
-    previous_page = request.META['HTTP_REFERER']
+    previous_page = request.META.get('HTTP_REFERER')
 
     if request.method == 'POST':
         form = QuestionVotesForm(request.POST)
@@ -136,7 +136,8 @@ def course_b(request, sub_code):
         if likhet >= 0.5:
             similar_questions.append(questions)
 
-    similar_questions.pop()
+    if similar_questions != []:
+        similar_questions.pop()
 
     context = {
         'similar_questions': similar_questions,
