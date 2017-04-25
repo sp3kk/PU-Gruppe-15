@@ -4,7 +4,8 @@ How to run the application (example for mac, windows do the equivalent in your t
 
 Requirements —> python 3.5 (or newer) and pip --> https://www.python.org/downloads/
 
-Clone the directory from git hub, link —> https://github.com/sp3kk/PU-Gruppe-25.git
+Clone the directory from git hub, link —> https://github.com/sp3kk/PU-Gruppe-25
+Make sure the folder is not in readonly, but editable.
 
 In your terminal, move to the directory where you cloned the project
 and run the following command —> pip install -r requirements.txt
