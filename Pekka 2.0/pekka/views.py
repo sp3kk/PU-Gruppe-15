@@ -16,7 +16,7 @@ from django.views.decorators.http import require_POST
 StopWords = ['is', 'when', 'what', 'the', 'and', 'where', '?', ' ',
              'should', 'can', 'I', 'i', 'a', 'an', 'are',
              'why', 'how', 'be', 'but', 'if', 'for', 'in',
-             'it', 'of', 'or', 'so', 'to', 'about', 'on',  ]
+             'it', 'of', 'or', 'so', 'to', 'about', 'on', "we", 'us']
 
 def detail(request, question_id):
     try:
@@ -78,7 +78,7 @@ def vote_question(request, question_id):
             'question_content': question.question_content,
             'score': question.get_score(),
             'form': form,
-            'previous_page': previous_page,
+            'previous_page': previous_page
             })
 
 

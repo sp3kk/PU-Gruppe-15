@@ -4,12 +4,15 @@ from .models import *
 #for å gjøre questions tilgjengelig på admin.
 
 admin.site.register(Answer)
-# admin.site.register(Question)
+
+
 
 
 class AnswerInline(admin.TabularInline):
     model = Answer
     extra = 1
+
+
 
 
 class QuestionAdmin(admin.ModelAdmin):
@@ -20,4 +23,4 @@ class QuestionAdmin(admin.ModelAdmin):
     inlines = [AnswerInline]
     list_display = ['question_title', 'question_content', "ask_time"]
 
-admin.site.register(Question, QuestionAdmin)
+admin.site.register(Question, QuestionAdmin, )
