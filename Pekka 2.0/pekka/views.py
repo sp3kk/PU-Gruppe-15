@@ -12,9 +12,11 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 
-AUDIO_FILE_TYPES = ['wav', 'mp3', 'ogg']
-IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
-
+#Adding a StopWord list to avoid comparing insignificant words
+StopWords = ['is', 'when', 'what', 'the', 'and', 'where', '?', ' ',
+             'should', 'can', 'I', 'i', 'a', 'an', 'are',
+             'why', 'how', 'be', 'but', 'if', 'for', 'in',
+             'it', 'of', 'or', 'so', 'to', 'about', 'on',  ]
 
 def detail(request, question_id):
     try:
@@ -126,13 +128,14 @@ def course_b(request, sub_code):
     try:
         a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
         a_content = a.question_content
+        a_content = ' '.join([word for word in a_content.split() if word not in StopWords])
     except Question.DoesNotExist:
         a = None
 
     count = 0
     for questions in all_questions_with_sub_code:
         b = questions.question_content
-
+        b = ' '.join([word for word in b.split() if word not in StopWords])
         likhet = SequenceMatcher(None, a_content, b).ratio()
 
         if likhet >= 0.5:
