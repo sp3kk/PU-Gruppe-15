@@ -38,10 +38,12 @@ Install coverage.py by entering --> pip install coverage
 In the terminal, enter the project folder \%some_folder%\PU-Gruppe-25\
 
 Enter the following lines:
+
 cd pekka*
+
 coverage run manage.py test
+
 coverage report
 
 Output should be a table of files used in tests, test coverage for each,
 and total test coverage.
--------------------------------
