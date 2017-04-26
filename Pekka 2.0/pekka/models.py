@@ -1,11 +1,5 @@
-from django.contrib.auth.models import Permission, User
+from django.contrib.auth.models import User
 from django.db import models
-import datetime
-from django.template.defaultfilters import slugify
-
-#hver gang man endrer her HUSK!!!!
-#husk: python manage.py makemigrations
-#python manage.py migrate
 
 
 class Question(models.Model):
@@ -37,7 +31,6 @@ class Question(models.Model):
             question_ratings += q.get_score()
         for ans in user_answers:
             answer_ratings += ans.get_score()
-#       return 10
         return question_ratings + answer_ratings
 
 
@@ -73,7 +66,6 @@ class Answer(models.Model):
             question_ratings += q.get_score()
         for ans in user_answers:
             answer_ratings += ans.get_score()
-#       return 10
         return question_ratings + answer_ratings
 
 
@@ -117,20 +109,3 @@ class AnswerVotes(models.Model):
             AnswerVotes.delete(user=user, ans=answer)
             if existing_vote[0].val != 0:
                 ans_vote.save()
-
-# class CommentVotes(models.Model):
-#    comment = models.ForeignKey(Comment, unique=True)
-#    user = models.ForeignKey(User, unique=True)
-#    vote_list = models.Manager
-#
-#    def __init__(self, comment, voter):
-#        self.comment = comment
-#        self.user = voter
-#
-#    @staticmethod
-#    def vote_question(user, comment):
-#        if CommentVotes.vote_list.get(user=user, comment=comment) is None:
-#            c_vote = CommentVotes(comment, user)
-#            c_vote.save()
-#        else:
-#            CommentVotes.vote_list.filter(user=user, comment=comment).delete()
