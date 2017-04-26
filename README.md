@@ -16,7 +16,10 @@ Clone the directory from git hub, link --> https://github.com/sp3kk/PU-Gruppe-25
 Make sure the folder is not in readonly, but editable.
 
 In your terminal, move to the directory where you cloned the project
-and run the following command --> pip install -r requirements.txt
+--> cd PU-Gruppe-25/
+
+Then run the following command 
+--> pip install -r requirements.txt
 
 Now enter the directory where the manage.py file is located 
 --> cd pekka*
