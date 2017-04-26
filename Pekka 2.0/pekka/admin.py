@@ -1,18 +1,12 @@
 from django.contrib import admin
 from .models import *
 
-#for å gjøre questions tilgjengelig på admin.
-
 admin.site.register(Answer)
-
-
 
 
 class AnswerInline(admin.TabularInline):
     model = Answer
     extra = 1
-
-
 
 
 class QuestionAdmin(admin.ModelAdmin):

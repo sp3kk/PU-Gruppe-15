@@ -1,14 +1,10 @@
 from difflib import SequenceMatcher
 
 from django.http import Http404
-from django.test import RequestFactory
 from django.test import TestCase, Client
-from unittest.mock import patch, MagicMock
-from django.core.urlresolvers import reverse
 from pekka.forms import QuestionForm
 from . import models
 from . import views
-from . import forms
 from django.contrib.auth import get_user_model
 
 c = Client()
@@ -105,70 +101,69 @@ class Test_Views(TestCase):
             self.assertEqual(c.get('/1/').status_code, 200)
 
     def test_TDT4110_a(self):
-        self.assertEqual(c.get('/pekka/TDT4110_a/').status_code, 200)
+        self.assertEqual(c.get('/pekka/TDT4110_answer/').status_code, 200)
 
     def test_TDT4110_q(self):
-        self.assertEqual(c.get('/TDT4110_q/').status_code, 200)
+        self.assertEqual(c.get('/TDT4110_question/').status_code, 200)
 
         form = QuestionForm()
         form.is_valid()
-        self.assertEqual(c.get('/TDT4110_b/').status_code, 200)
+        self.assertEqual(c.get('/TDT4110_similar/').status_code, 200)
 
     def test_TDT4140_a(self):
-        self.assertEqual(c.get('/pekka/TDT4140_a/').status_code, 200)
+        self.assertEqual(c.get('/pekka/TDT4140_answer/').status_code, 200)
 
     def test_TDT4140_q(self):
-        self.assertEqual(c.get('/TDT4140_q/').status_code, 200)
+        self.assertEqual(c.get('/TDT4140_question/').status_code, 200)
 
         form = QuestionForm()
         form.is_valid()
-        self.assertEqual(c.get('/TDT4140_b/').status_code, 200)
+        self.assertEqual(c.get('/TDT4140_similar/').status_code, 200)
 
     def test_TDT4145_a(self):
-        self.assertEqual(c.get('/pekka/TDT4145_a/').status_code, 200)
+        self.assertEqual(c.get('/pekka/TDT4145_answer/').status_code, 200)
 
     def test_TDT4145_q(self):
-        self.assertEqual(c.get('/TDT4145_q/').status_code, 200)
+        self.assertEqual(c.get('/TDT4145_question/').status_code, 200)
 
         form = QuestionForm()
         form.is_valid()
-        self.assertEqual(c.get('/TDT4145_b/').status_code, 200)
+        self.assertEqual(c.get('/TDT4145_similar/').status_code, 200)
 
     def test_TDT4180_a(self):
-        self.assertEqual(c.get('/pekka/TDT4180_a/').status_code, 200)
+        self.assertEqual(c.get('/pekka/TDT4180_answer/').status_code, 200)
 
     def test_TDT4180_q(self):
-        self.assertEqual(c.get('/TDT4180_q/').status_code, 200)
+        self.assertEqual(c.get('/TDT4180_question/').status_code, 200)
 
         form = QuestionForm()
         form.is_valid()
-        self.assertEqual(c.get('/TDT4180_b/').status_code, 200)
+        self.assertEqual(c.get('/TDT4180_similar/').status_code, 200)
 
     def test_TTM4100_a(self):
-        self.assertEqual(c.get('/pekka/TTM4100_a/').status_code, 200)
+        self.assertEqual(c.get('/pekka/TTM4100_answer/').status_code, 200)
 
     def test_TTM4100_q(self):
-        self.assertEqual(c.get('/TTM4100_q/').status_code, 200)
+        self.assertEqual(c.get('/TTM4100_question/').status_code, 200)
 
         form = QuestionForm()
         form.is_valid()
-        self.assertEqual(c.get('/TTM4100_b/').status_code, 200)
+        self.assertEqual(c.get('/TTM4100_similar/').status_code, 200)
 
-    def test_TDT4110_b(self):
-        self.assertEqual(c.get('/TDT4110_b/').status_code, 200)
+    def test_TDT4110_similar(self):
+        self.assertEqual(c.get('/TDT4110_similar/').status_code, 200)
 
-    def test_TDT4140_b(self):
-        self.assertEqual(c.get('/TDT4140_b/').status_code, 200)
+    def test_TDT4140_similar(self):
+        self.assertEqual(c.get('/TDT4140_similar/').status_code, 200)
 
-    def test_TDT4145_b(self):
-        self.assertEqual(c.get('/TDT4145_b/').status_code, 200)
+    def test_TDT4145_similar(self):
+        self.assertEqual(c.get('/TDT4145_similar/').status_code, 200)
 
-    def test_TDT4180_b(self):
-        self.assertEqual(c.get('/TDT4180_b/').status_code, 200)
+    def test_TDT4180_similar(self):
+        self.assertEqual(c.get('/TDT4180_similar/').status_code, 200)
 
-    def test_TTM4100_b(self):
-        self.assertEqual(c.get('/TTM4100_b/').status_code, 200)
-
+    def test_TTM4100_similar(self):
+        self.assertEqual(c.get('/TTM4100_similar/').status_code, 200)
 
     def test_vote_question(self):
         user = get_user_model().objects.create_user('test', '1234')
@@ -179,15 +174,13 @@ class Test_Views(TestCase):
         question_form = QuestionForm({'question_content': "her er ett spørsmål", 'question_title': 'Tittelen', })
         self.assertEqual(question_form.is_valid(), True)  # Now that you have given it data, it can validate.
         self.assertEqual(c.get('/1/').status_code, 200)
-
         client = Client()
         response = client.post('/pekka/1/vote_question/')
         form = QuestionForm()
         self.assertEqual(form.is_valid(), False)  # No data has been supplied yet.
         form = QuestionForm({'question_content': "her er ett spørsmål", 'question_title': 'Tittelen', })
         self.assertEqual(form.is_valid(), True)  # Now that you have given it data, it can validate.
-        views.request.method = 'POST'
-        #self.assertRedirects(response, '/1/')
+        #views.request.method = 'POST'
         self.assertEqual(c.get('/1/').status_code, 200)
         self.assertEqual(c.get('/pekka/1/').status_code, 200)
 
@@ -222,7 +215,7 @@ class Test_Views(TestCase):
         answer.save()
         self.assertEqual(c.get('/pekka/1/').status_code, 200)
 
-    def test_course_b(self):
+    def test_course_similar(self):
         user = get_user_model().objects.create_user('test', '1234')
         question = views.Question(author=user, question_content='her er ett spørsmål', question_title='Tittelen',
                                   sub_code='TTM4100')
@@ -235,9 +228,9 @@ class Test_Views(TestCase):
         likhet = SequenceMatcher(None, a_content, b).ratio()
         self.assertGreaterEqual(likhet, 0.5)
         self.assertIsNotNone(all_questions_with_sub_code)
-        self.assertEqual(c.get('/TTM4100_b/').status_code, 200)
+        self.assertEqual(c.get('/TTM4100_similar/').status_code, 200)
 
-    def test_course_q(self):
+    def test_course_question(self):
 
         import datetime
         now = datetime.datetime.now()
@@ -251,9 +244,8 @@ class Test_Views(TestCase):
         self.assertEqual(form.is_valid(), False)  # No data has been supplied yet.
         form = QuestionForm({'question_content': "her er ett spørsmål", 'question_title': 'Tittelen', })
         self.assertEqual(form.is_valid(), True)  # Now that you have given it data, it can validate.
-        self.assertEqual(c.get('/pekka/TDT4140_q/').status_code, 200)
-        views.request.method = 'POST'
-
+        self.assertEqual(c.get('/pekka/TDT4140_question/').status_code, 200)
+        #views.request.method = 'POST'
 
 
     def test_call_view_loads(self):

@@ -1,30 +1,28 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
-from django.http import JsonResponse, HttpResponseRedirect, HttpResponse, Http404, request
-from django.shortcuts import render, get_object_or_404, redirect, render_to_response, reverse
-from django.db.models import Q
+from django.http import HttpResponseRedirect,  Http404
+from django.shortcuts import render
 from . forms import *
 from .models import *
 import datetime
-from django.template import RequestContext, loader
 from difflib import SequenceMatcher
 from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST
 
-#Adding a StopWord list to avoid comparing insignificant words
+
+# Adding a StopWord list to avoid comparing insignificant words
 StopWords = ['is', 'when', 'what', 'the', 'and', 'where', '?', ' ',
              'should', 'can', 'I', 'i', 'a', 'an', 'are',
              'why', 'how', 'be', 'but', 'if', 'for', 'in',
              'it', 'of', 'or', 'so', 'to', 'about', 'on', "we", 'us']
 
+
+# Detail is the detailed view of a single question, with associated answers.
 def detail(request, question_id):
     try:
         question = Question.objects.get(pk=question_id)
         answers = question.answer_set.all()
         score = question.get_score()
         form = AnswerForm(request.POST)
-
         if request.method == 'POST':
             if form.is_valid():
                 answer = Answer()
@@ -56,7 +54,6 @@ def vote_question(request, question_id):
     question = Question.objects.get(pk=question_id)
     form = QuestionVotesForm()
     previous_page = request.META.get('HTTP_REFERER')
-
     if request.method == 'POST':
         form = QuestionVotesForm(request.POST)
         if form.is_valid():
@@ -86,7 +83,6 @@ def vote_answer(request, answer_id):
     answer = Answer.objects.get(pk=answer_id)
     form = AnswerVotesForm()
     current_score = answer.get_score()
-
     if request.method == 'POST':
         form = AnswerVotesForm(request.POST)
         if form.is_valid():
@@ -111,56 +107,47 @@ def vote_answer(request, answer_id):
 # ------------------------------------------------------------------------------------------------------------------
 
 
-def course_a(request, sub_code):
-    # connecter til databasen
+def course_answer(request, sub_code):
     all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
     context = {
         'all_questions_with_sub_code': all_questions_with_sub_code,
         'sub_code': sub_code
     }
-    return render(request, 'courses/course_a.html', context=context)
+    return render(request, 'courses/course_answer.html', context=context)
 
 
-def course_b(request, sub_code):
+def course_similar(request, sub_code):
     all_questions_with_sub_code = Question.objects.filter(sub_code=sub_code)
     similar_questions = []
-
     try:
         a = Question.objects.filter(sub_code=sub_code).latest('ask_time')
         a_content = a.question_content
         a_content = ' '.join([word for word in a_content.split() if word not in StopWords])
     except Question.DoesNotExist:
         a = None
-
     count = 0
     for questions in all_questions_with_sub_code:
         b = questions.question_content
         b = ' '.join([word for word in b.split() if word not in StopWords])
-        likhet = SequenceMatcher(None, a_content, b).ratio()
-
-        if likhet >= 0.5:
+        similarity = SequenceMatcher(None, a_content, b).ratio()
+        if similarity >= 0.5:
             similar_questions.append(questions)
             count += 1
-
-    if similar_questions != []:
+    if similar_questions:
         similar_questions.pop()
-
     if count > 1:
         Question.objects.filter(sub_code=sub_code).latest('ask_time').delete()
-
     context = {
         'similar_questions': similar_questions,
         'sub_code': sub_code
     }
+    return render(request, 'courses/course_similar.html', context)
 
-    return render(request, 'courses/course_b.html', context)
 
-
-def course_q(request, sub_code):
+def course_question(request, sub_code):
     form = QuestionForm()
     if request.method == 'POST':
         form = QuestionForm(request.POST)
-
         if form.is_valid():
             question = Question()
             question.question_title = form.data['question_title']
@@ -169,13 +156,12 @@ def course_q(request, sub_code):
             question.author = request.user
             question.ask_time = datetime.datetime.now()
             question.save()
-            return redirect("../../" + sub_code + "_b")
-
+            return redirect("../../" + sub_code + "_similar")
     context = {
         'form': form,
         'sub_code': sub_code
     }
-    return render(request, 'courses/course_q.html', context)
+    return render(request, 'courses/course_question.html', context)
 
 
 def about(request):
